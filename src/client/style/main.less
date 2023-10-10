@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.App{
+  padding-top: @navHeightMobile;
+
+  @media screen and (min-width: 600px) {
+    padding-top: @navHeight;
+  }
+}

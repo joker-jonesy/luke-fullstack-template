@@ -9,9 +9,9 @@ function Nav(){
 
    return (
        <>
-           <nav>
+           <nav cl>
                <div className={"logo"}>
-                   <img src={logo} alt="react logo"/>
+
                </div>
 
                <div className={"link-container"}>

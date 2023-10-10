@@ -1,69 +1,133 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+.flexInit {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-wrap: wrap;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.flexCenterRow {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.flexAroundRow {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
-button:hover {
-  border-color: #646cff;
+.flexBetweenRow {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.flexEvenRow {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.flexStartRow {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.flexEndRow {
+  flex-direction: row;
+  justify-content: end;
+  align-items: flex-start;
+}
+.flexCenterColumn {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flexStartColumn {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flexEndColumn {
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.flexAroundColumn {
+  flex-direction: column;
+}
+nav {
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #008000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  z-index: 99;
+}
+.logo {
+  height: 100%;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img {
+  height: 90%;
+}
+.link-container {
+  display: none;
+}
+.mobile_menu {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  top: 80px;
+  background-color: rgba(0, 128, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.5s;
+}
+.link-container a {
+  margin: 0 10px;
+}
+.mobile_menu a {
+  margin: 10px 0;
+  font-size: 36px;
+}
+.pop img {
+  height: 100px;
+}
+.post img {
+  height: 100px;
+}
+@media screen and (min-width: 600px) {
+  nav {
+    height: 60px;
   }
-  a:hover {
-    color: #747bff;
+  .link-container {
+    display: flex;
   }
-  button {
-    background-color: #f9f9f9;
+  .mobile_menu {
+    display: none;
+  }
+  .menu {
+    display: none;
+  }
+}
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.App {
+  padding-top: 80px;
+}
+@media screen and (min-width: 600px) {
+  .App {
+    padding-top: 60px;
   }
 }

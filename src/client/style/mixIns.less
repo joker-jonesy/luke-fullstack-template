@@ -1,0 +1,69 @@
+//flex box inits
+.flexInit{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flexCenterRow{
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexAroundRow{
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexBetweenRow{
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexEvenRow{
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flexStartRow{
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flexEndRow{
+  flex-direction: row;
+  justify-content: end;
+  align-items: flex-start;
+}
+
+.flexCenterColumn{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexStartColumn{
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flexEndColumn{
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flexAroundColumn{
+  flex-direction: column;
+}
+
+//padding init
+.pad(@pad){
+  box-sizing: border-box;
+  padding: @pad;
+}
