@@ -5,12 +5,30 @@
   "scripts": {
     "dev": "nodemon src/server/main.js -w src/server",
     "start": "NODE_ENV=production node src/server/main.js",
-    "build": "vite build"
+    "build": "vite build",
+    "less": "less-watch-compiler src/client/style src/client index.less"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "react-dom": "^18.2.0",
+    "@prisma/client": "^5.3.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^9.0.2",
+    "less-watch-compiler": "^1.16.3",
+    "pg": "^8.11.3",
+    "prisma": "^5.2.0",
+    "process": "^0.11.10",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.15.0",
+    "redux": "^4.2.1",
+    "uuid": "^9.0.1",
     "vite-express": "*"
   },
   "devDependencies": {
