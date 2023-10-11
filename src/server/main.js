@@ -1,16 +1,19 @@
 const express = require("express");
 const ViteExpress = require("vite-express");
+const path = require("path");
 
 const app = express();
 
-app.get("/hello", (req, res) => {
-  res.send("Hello Vite + React!");
-});
+const cors = require("cors");
+app.use(cors());
 
-app.get("/sauce", (req, res) => {
-  res.send("This class is the sauce");
-});
+app.use("/", express.static(path.join(__dirname, "public")));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api", require("./api"));
+app.use("/auth", require("./auth"))
 // backend routes
 
 ViteExpress.listen(app, 3000, () =>

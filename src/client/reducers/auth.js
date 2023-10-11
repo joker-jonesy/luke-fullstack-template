@@ -8,14 +8,14 @@ const authApi = storeApi.injectEndpoints({
     endpoints: (builder)=>({
         login: builder.mutation({
             query: (cred)=>({
-                url:"auth/login",
+                url:"/auth/login",
                 method: "POST",
                 body: cred
             })
         }),
         register: builder.mutation({
             query: (cred)=>({
-                url:"auth/register",
+                url:"/auth/register",
                 method: "POST",
                 body: cred
             })
@@ -27,7 +27,6 @@ const authApi = storeApi.injectEndpoints({
 })
 
 function storeToken(state, {payload}){
-    console.log(state)
     state.credentials = {token: payload.token, user: {...payload.user}};
     window.sessionStorage.setItem(
         CREDENTIALS,
@@ -52,7 +51,6 @@ const authSlice = createSlice({
         builder.addMatcher(storeApi.endpoints.login.matchFulfilled, storeToken);
         builder.addMatcher(storeApi.endpoints.register.matchFulfilled, storeToken);
         builder.addMatcher(storeApi.endpoints.logout.matchFulfilled, (state)=>{
-            console.log("logout")
             state.credentials = {
                 token:"",
                 user: {userId:null}

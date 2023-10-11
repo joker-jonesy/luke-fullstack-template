@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useLoginMutation, useRegisterMutation } from "../../reducers/auth";
+import { useLoginMutation, useRegisterMutation } from "../reducers/auth";
+import {useNavigate} from "react-router-dom";
 
 /**
  * AuthForm allows a user to either login or register for an account.
@@ -7,7 +8,6 @@ import { useLoginMutation, useRegisterMutation } from "../../reducers/auth";
 function AuthForm() {
   const [login] = useLoginMutation();
   const [register] = useRegisterMutation();
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [username, setUsername] = useState("");
@@ -15,6 +15,7 @@ function AuthForm() {
 
   const [isLogin, setIsLogin] = useState(true);
   const authType = isLogin ? "Login" : "Register";
+  const navigate = useNavigate();
   const oppositeAuthCopy = isLogin
     ? "Don't have an account?"
     : "Already have an account?";
@@ -31,10 +32,9 @@ function AuthForm() {
     const credentials = { username, password };
 
     try {
-      setLoading(true);
       await authMethod(credentials).unwrap();
+      navigate("/")
     } catch (error) {
-      setLoading(false);
       setError(error.data);
     }
   }
@@ -75,7 +75,6 @@ function AuthForm() {
           {oppositeAuthType}
         </a>
       </p>
-      {loading && <p>Logging in...</p>}
       {error && <p>{error}</p>}
     </>
   );

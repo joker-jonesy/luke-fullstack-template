@@ -1,14 +1,23 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useGetPostsQuery} from "./reducers/api";
+import {Route, Routes} from "react-router-dom";
+import AuthForm from "./pages/AuthForm";
+import Posts from "./pages/Posts";
+import User from "./pages/User";
 
 function App() {
-  const [count, setCount] = useState(0);
+    const me = useSelector((state) => state.auth.credentials.user);
 
-  return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes>
+                <Route index element={<Posts/>}/>
+                <Route path={"/register"} element={<AuthForm/>}/>
+                <Route path={"/user"} element={<User/>}/>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
