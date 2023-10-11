@@ -16,6 +16,6 @@ app.use("/api", require("./api"));
 app.use("/auth", require("./auth"))
 // backend routes
 
-ViteExpress.listen(app, 3000, () =>
+ViteExpress.listen(app, process.env.PORT||3000, () =>
   console.log("Server is listening on port 3000...")
 );
