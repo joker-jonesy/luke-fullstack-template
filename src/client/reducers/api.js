@@ -8,7 +8,7 @@ export const api = createApi({
     tagTypes:['tag'],
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000"||process.env.URL,
+        baseUrl: "http://localhost:3000",
         prepareHeaders: (headers, { getState }) => {
             const credentials = window.sessionStorage.getItem(CREDENTIALS);
             const parsedCredentials = JSON.parse(credentials || "{}");
