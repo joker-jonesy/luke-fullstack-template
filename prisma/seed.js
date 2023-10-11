@@ -24,12 +24,21 @@ const generateData  = async()=>{
 
     const hashedPassword = await bcrypt.hash("test123", salt_rounds);
 
-    const user = await prisma.user.create({
-        data:{
-            username: "joker_jonesy",
-            password:hashedPassword
-        }
+    const exsistingUser = prisma.user.findUnique({
+        id:1
     })
+
+    if(!exsistingUser){
+        await prisma.user.create({
+            data:{
+                username: "joker_jonesy",
+                password:hashedPassword
+            }
+        })
+    }else{
+        console.log("user exists")
+    }
+
 
     for(let i=0; i<posts.length; i++){
         await prisma.post.create({
