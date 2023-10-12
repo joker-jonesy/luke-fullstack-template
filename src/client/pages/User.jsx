@@ -3,6 +3,8 @@ import {useDeletePostMutation, useAddPostMutation, useGetPostsQuery} from "../re
 import {useGetUserPostsQuery} from "../reducers/api";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import CreatePostForm from "../components/CreatePostForm";
+import Post from "../components/Post";
 
 function User (){
     const me = useSelector(state=>state.auth.credentials.user);
@@ -47,13 +49,12 @@ function User (){
 
     return (
         <>
-            <button onClick={onSubmit}>Add Post</button>
+            <section>
+            <CreatePostForm me={me}/>
             {load? <h1>Loading...</h1>: posts.filter(i=>  i.authorId === me.userId).length===0? <h1>User has not created any posts</h1>:posts.filter(i=>  i.authorId === me.userId).map((i)=>
-                <div key={i.id}>
-                    <h1 >{i.text}</h1>
-                    <button onClick={()=>onDelete(i.id)}>DELETE</button>
-                </div>
+                <Post key={i.id} data={i} delete={true}/>
             )}
+            </section>
         </>
     )
 }

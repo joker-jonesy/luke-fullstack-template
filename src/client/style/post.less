@@ -1,0 +1,19 @@
+.post{
+  .side();
+  width: 100%;
+  .flexInit();
+  .flexCenterColumn();
+  height: 250px;
+
+
+  @media screen and (min-width: @tablet){
+    .rounded();
+    width: @mb;
+    margin: 8px 0;
+  }
+
+  @media screen and (min-width: @desktop){
+    width: @tablet;
+
+  }
+}

@@ -56,12 +56,16 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #008000;
+  background-color: #efefef;
+  color: #000000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 8px;
   z-index: 99;
+}
+nav a {
+  color: #000000;
 }
 .logo {
   height: 100%;
@@ -123,6 +127,13 @@ a {
   text-decoration: none;
   color: black;
 }
+html,
+body,
+.App {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
 .App {
   padding-top: 80px;
 }
@@ -130,4 +141,50 @@ a {
   .App {
     padding-top: 60px;
   }
+}
+section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 750px) {
+  section {
+    flex-direction: column;
+  }
+}
+.post {
+  background-color: #cccccc;
+  color: #151515;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+.post a {
+  color: #151515;
+}
+@media screen and (min-width: 750px) {
+  .post {
+    border-radius: 8px;
+    width: 600px;
+    margin: 8px 0;
+  }
+}
+@media screen and (min-width: 900px) {
+  .post {
+    width: 750px;
+  }
+}
+footer {
+  min-height: 100px;
+  background-color: #efefef;
+  color: #000000;
+}
+footer a {
+  color: #000000;
 }

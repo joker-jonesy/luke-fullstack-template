@@ -12,15 +12,22 @@ router.get('/', async (req,res,next)=>{
     }
 })
 
-// gets logged in user posts
-router.get('/user', require('../auth/middleware'), async (req,res,next)=>{
+router.get("/user/:id",async (req,res,next)=>{
     try{
-        const allPosts = await prisma.post.findMany({
+        const post = await prisma.post.findUnique({
             where:{
-                authorId: Number(req.user.id)
-            }
+                id: Number(req.params.id)
+            },
         });
-        res.send(allPosts)
+
+        const user = await prisma.user.findUnique({
+            where:{
+                id: Number(post.authorId)
+            },
+        });
+
+
+        res.send({username: user.username})
     }catch(err){
         next(err)
     }
@@ -31,8 +38,10 @@ router.get('/:id', async (req,res,next)=>{
         const post = await prisma.post.findUnique({
             where:{
                 id: Number(req.params.id)
-            }
+            },
         });
+
+
         res.send(post)
     }catch(err){
         next(err)

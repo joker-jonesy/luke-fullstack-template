@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import store from "./store";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Provider store={store}>
                 <Nav/>
                 <App/>
+                <Footer/>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>

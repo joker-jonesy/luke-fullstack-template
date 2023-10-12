@@ -1,6 +1,7 @@
 import {useGetPostsQuery} from "../reducers/api";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
+import Post from "../components/Post";
 
 function Posts() {
 
@@ -15,14 +16,14 @@ function Posts() {
 
     return (
         <>
+            <section>
             {load ? <h1>Loading...</h1>
                 : posts.length === 0||!posts
                     ? <h1>No Posts Listed</h1>
                     : posts.map((i) =>
-                        <div key={i.id}>
-                            <h1>{i.text}</h1>
-                        </div>)
+                        <Post key={i.id} data={i} delete={false}/>)
             }
+            </section>
         </>
     )
 }

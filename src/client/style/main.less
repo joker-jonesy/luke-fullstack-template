@@ -8,10 +8,31 @@ a{
   color: black;
 }
 
+html,body,.App{
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
 .App{
   padding-top: @navHeightMobile;
 
   @media screen and (min-width: 600px) {
     padding-top: @navHeight;
+  }
+
+
+}
+
+section{
+  .flexInit();
+  .flexCenterColumn();
+  //min-height: 100vh;
+  @media screen and (min-width: @tablet){
+    .flexAroundColumn();
+  }
+
+  @media screen and (min-width: @desktop){
+
   }
 }
