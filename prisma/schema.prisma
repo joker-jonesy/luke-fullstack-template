@@ -17,8 +17,8 @@ model user {
 
 model post {
   id        Int        @id @default(autoincrement())
-  author    user       @relation(fields: [authorId], references: [id])
-  authorId  Int // relation scalar field  (used in the `@relation` attribute above)
+  author    user?      @relation(fields: [authorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  authorId  Int? // relation scalar field  (used in the `@relation` attribute above)
   text      String
   post_tag  post_tag[]
   createdAt DateTime   @default(now())
@@ -32,8 +32,8 @@ model tag {
 
 model post_tag {
   id     Int  @id @default(autoincrement())
-  post   post @relation(fields: [postId], references: [id])
+  post   post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   postId Int
-  tag    tag  @relation(fields: [tagId], references: [id])
+  tag    tag  @relation(fields: [tagId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   tagId  Int
 }

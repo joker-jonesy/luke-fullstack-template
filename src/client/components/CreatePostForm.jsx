@@ -1,6 +1,6 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
-import {useAddPostMutation, useGetTagsQuery} from "../reducers/api";
+import {useAddPostMutation, useGetPostsQuery, useGetTagsQuery} from "../reducers/api";
 import Button from "./inputs/Button";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -11,12 +11,32 @@ function CreatePostForm(props){
 
     const [text, setText]=useState("");
     const [error, setError]=useState("");
+    const [tags,setTags]= useState([]);
+    const [change, setChange]= useState(false)
+
+    const toggleTag = (tag)=>{
+        const newTags =tags;
+        if(tags.find((i)=>i.name===tag.name)){
+            const index = tags.indexOf(tag);
+            newTags.splice(index,1);
+            setTags(newTags)
+        }else{
+            newTags.push(tag);
+            setTags(newTags)
+        }
+        setChange(!change)
+    }
+
+    useEffect(()=>{
+        // console.log("changed")
+    }, [change])
 
     const onSubmit = async()=>{
         if(text.length>=3){
             await addPost({
                 text:text,
-                authorId: me.userId
+                authorId: me.userId,
+                tags: tags
             }).then(()=>{
                 console.log("added");
                 setText("");
@@ -36,7 +56,7 @@ function CreatePostForm(props){
             <h3>Add Tags</h3>
             <div className={"tags"}>
                 {isLoading? <FontAwesomeIcon icon={faSpinner} spin/>: data.map((i)=>
-                    <div key={i.id} className={"tag"}>{i.name}</div>
+                    <div key={i.id} className={"tag"} onClick={()=>toggleTag({name:i.name, id:i.id})} style={{border: tags.find(x=>i.name===x.name)?"3px solid blue":"none"}}>{i.name}</div>
                 ) }
             </div>
             <Button click={onSubmit} vl={"SUBMIT"} theme={"submit"}/>

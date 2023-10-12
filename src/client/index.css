@@ -214,6 +214,36 @@ section {
     flex-direction: column;
   }
 }
+.createForm .tags,
+.post .tags {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.createForm .tags .tag,
+.post .tags .tag {
+  height: 45px;
+  min-width: 80px;
+  border-radius: 45px;
+  transition: 0.125s;
+  background-color: #9b9b9b;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 8px;
+  box-sizing: border-box;
+  padding: 8px;
+}
+.createForm .tags .tag a,
+.post .tags .tag a {
+  color: white;
+}
 .post {
   background-color: #cccccc;
   color: #151515;
@@ -288,40 +318,11 @@ section {
 .createForm * {
   margin: 8px 0;
 }
-.createForm .tag {
+.createForm .tags .tag {
   cursor: pointer;
 }
-.createForm .tag:hover {
+.createForm .tags .tag:hover {
   background-color: black;
-  color: white;
-}
-.createForm .tags,
-.post .tags {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.createForm .tags .tag,
-.post .tags .tag {
-  height: 45px;
-  min-width: 80px;
-  border-radius: 45px;
-  background-color: #9b9b9b;
-  color: white;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 0 8px;
-  box-sizing: border-box;
-  padding: 8px;
-}
-.createForm .tags .tag a,
-.post .tags .tag a {
   color: white;
 }
 footer {

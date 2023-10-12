@@ -10,7 +10,6 @@ function Post(props) {
     const {data, isLoading} = useGetPostAuthorQuery(props.data.id)
     const onDelete = async (id) => {
         await deletePost(id).then(() => {
-            console.log("delete");
         }).catch(() => {
             console.log("error")
         })

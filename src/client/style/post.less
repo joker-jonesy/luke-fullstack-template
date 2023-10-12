@@ -1,3 +1,24 @@
+.createForm,.post{
+  .tags{
+    width: 100%;
+    .flexInit();
+    .flexStartRow();
+
+    .tag{
+      height: 45px;
+      min-width: 80px;
+      border-radius: 45px;
+      transition: 0.125s;
+      .minor();
+      .flexInit();
+      .flexCenterColumn();
+      margin: 0 0 0 8px;
+
+      .pad(8px);
+    }
+  }
+}
+
 .post{
   .side();
   width: 100%;
@@ -69,32 +90,17 @@
     margin: 8px 0;
   }
 
-  .tag{
-    cursor: pointer;
-    &:hover{
-      background-color: black;
-      color: @f3;
-    }
-  }
-
-}
-
-.createForm,.post{
   .tags{
-    width: 100%;
-    .flexInit();
-    .flexStartRow();
-
     .tag{
-      height: 45px;
-      min-width: 80px;
-      border-radius: 45px;
-      .minor();
-      .flexInit();
-      .flexCenterColumn();
-      margin: 0 0 0 8px;
-
-      .pad(8px);
+      cursor: pointer;
+      &:hover{
+        background-color: black;
+        color: @f3;
+      }
     }
   }
+
+
+
 }
+

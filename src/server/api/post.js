@@ -77,8 +77,24 @@ router.delete('/:id', require('../auth/middleware'), async (req,res,next)=>{
 
 router.post('/', async (req,res,next)=>{
     try{
+
         const post = await prisma.post.create({
-            data:req.body
+            data: {
+                text: req.body.text,
+                authorId: req.body.authorId
+            }
+        })
+
+        const convertedItems = req.body.tags.map((i)=>{
+            return {
+                postId: post.id,
+                tagId: i.id
+            }
+        })
+        
+
+        const relations = await prisma.post_tag.createMany({
+            data: convertedItems
         })
         res.send(post)
     }catch(err){
