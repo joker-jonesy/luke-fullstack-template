@@ -20,8 +20,8 @@ function Posts() {
             {load ? <h1>Loading...</h1>
                 : posts.length === 0||!posts
                     ? <h1>No Posts Listed</h1>
-                    : posts.map((i) =>
-                        <Post key={i.id} data={i} delete={false}/>)
+                    : posts.map((i, idx) =>
+                        <Post key={idx} data={i} delete={false}/>)
             }
             </section>
         </>

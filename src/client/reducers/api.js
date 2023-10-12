@@ -24,6 +24,9 @@ export const api = createApi({
         getPosts: builder.query({
             query: ()=> '/api/posts'
         }),
+        getTags: builder.query({
+            query: ()=> '/api/tags'
+        }),
         getPostAuthor: builder.query({
             query: (id)=> '/api/posts/user/'+id
         }),
@@ -57,10 +60,18 @@ export const api = createApi({
 const dataSlice = createSlice({
     name:"data",
     initialState:{
-        posts:[]
+        posts:[],
+        tags:[]
     },
     reducers:{},
     extraReducers: (builder)=>{
+        builder.addMatcher(api.endpoints.getTags.matchFulfilled, (state, {payload})=>{
+            return{
+                ...state,
+                tags: payload
+            }
+        })
+
         builder.addMatcher(api.endpoints.getPosts.matchFulfilled, (state, {payload})=>{
             return{
                 ...state,
@@ -85,4 +96,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 
-export const {useGetUserPostsQuery, useGetPostAuthorQuery, useAddPostMutation, useDeletePostMutation, useGetPostsQuery, useUpdatePostMutation} = api;
+export const {useGetUserPostsQuery, useGetPostAuthorQuery, useAddPostMutation, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useUpdatePostMutation} = api;

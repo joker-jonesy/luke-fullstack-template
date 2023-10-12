@@ -24,6 +24,56 @@ html,body,.App{
 
 }
 
+button{
+  .flexInit();
+  .flexCenterColumn();
+  height: 30px;
+  min-width: 30px;
+  max-width: 100px;
+  .pad(8px 25px);
+  border-radius: 30px;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+  line-height: 0;
+  outline: none;
+  .main();
+  transition: 0.125s;
+
+  &.warning{
+    &:hover{
+      background-color: @warn;
+      color: white;
+    }
+  }
+
+  &.submit{
+    &:hover{
+      background-color: @good;
+      color: white;
+    }
+  }
+
+  &:hover{
+    .minor();
+  }
+}
+
+input{
+  outline: none;
+  border: none;
+  .side();
+  height: 35px;
+  .flexInit();
+  justify-content: flex-start;
+  align-items: center;
+  .pad(8px);
+  width: 100%;border-radius: 35px;
+  &:focus{
+    border: blue 5px solid;
+  }
+}
+
 section{
   .flexInit();
   .flexCenterColumn();

@@ -5,7 +5,15 @@ const prisma = new PrismaClient();
 
 router.get('/', async (req,res,next)=>{
     try{
-        const allPosts = await prisma.post.findMany();
+        const allPosts = await prisma.post.findMany({
+            include:{
+                post_tag:{
+                    include:{
+                        tag:true
+                    }
+                }
+            }
+        });
         res.send(allPosts)
     }catch(err){
         next(err)

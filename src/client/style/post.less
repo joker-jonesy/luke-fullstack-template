@@ -2,8 +2,36 @@
   .side();
   width: 100%;
   .flexInit();
-  .flexCenterColumn();
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   height: 250px;
+  .pad(8px 16px);
+  position: relative;
+
+  .delete{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: @warn;
+  }
+
+  .info{
+    height: 100px;
+    width: 100%;
+    .flexInit();
+    flex-direction: column;
+
+    h1{
+      text-decoration: underline;
+      font-size: 36px;
+    }
+
+    p{
+      font-size: 24px;
+    }
+
+  }
 
 
   @media screen and (min-width: @tablet){
@@ -14,6 +42,59 @@
 
   @media screen and (min-width: @desktop){
     width: @tablet;
+  }
+}
 
+.createForm{
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 250px;
+  .pad(8px);
+
+  @media screen and (min-width: @tablet){
+    width: @mb;
+    margin: 8px 0;
+    border: 5px solid @minor;
+
+    .rounded();
+  }
+
+  @media screen and (min-width: @desktop){
+    width: @tablet;
+  }
+
+  *{
+    margin: 8px 0;
+  }
+
+  .tag{
+    cursor: pointer;
+    &:hover{
+      background-color: black;
+      color: @f3;
+    }
+  }
+
+}
+
+.createForm,.post{
+  .tags{
+    width: 100%;
+    .flexInit();
+    .flexStartRow();
+
+    .tag{
+      height: 45px;
+      min-width: 80px;
+      border-radius: 45px;
+      .minor();
+      .flexInit();
+      .flexCenterColumn();
+      margin: 0 0 0 8px;
+
+      .pad(8px);
+    }
   }
 }

@@ -23,7 +23,7 @@ function Nav(){
                    <Link to="/">Posts</Link>
                    {!user.userId && <Link to={"/register"}>Login/Register</Link>}
                    {user.userId && <Link to={"/user"}>Profile</Link>}
-                   {user.userId && <button onClick={logout}>Logout</button>}
+                   {user.userId && <a onClick={logout}>Logout</a>}
                    {/*<div className={"profile"}>{user.userId && <h1>{user.username}</h1>}</div>*/}
                </div>
                <FontAwesomeIcon className={"menu"} onClick={()=>setToggle(!toggle)} icon={faBars} />

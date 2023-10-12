@@ -4,7 +4,7 @@ function LogoutButton() {
   const [logout] = useLogoutMutation();
 
 
-  return <button onClick={logout}>Logout</button>;
+  return <a onClick={logout}>Logout</a>;
 }
 
 export default LogoutButton;

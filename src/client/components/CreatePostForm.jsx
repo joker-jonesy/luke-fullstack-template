@@ -1,10 +1,13 @@
 import {useState} from "react";
 import TextInput from "./inputs/TextInput";
-import {useAddPostMutation} from "../reducers/api";
+import {useAddPostMutation, useGetTagsQuery} from "../reducers/api";
 import Button from "./inputs/Button";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 function CreatePostForm(props){
     const {me} = props;
     const [addPost]= useAddPostMutation();
+    const {data, isLoading}= useGetTagsQuery();
 
     const [text, setText]=useState("");
     const [error, setError]=useState("");
@@ -28,8 +31,15 @@ function CreatePostForm(props){
 
     return(
         <div className={"createForm"}>
+            <h1>Create a Post</h1>
             <TextInput type={"text"} vl={text} chg={setText}/>
-            <Button click={onSubmit} vl={"SUBMIT"} theme={"primary"}/>
+            <h3>Add Tags</h3>
+            <div className={"tags"}>
+                {isLoading? <FontAwesomeIcon icon={faSpinner} spin/>: data.map((i)=>
+                    <div key={i.id} className={"tag"}>{i.name}</div>
+                ) }
+            </div>
+            <Button click={onSubmit} vl={"SUBMIT"} theme={"submit"}/>
             <h1 style={{"color":"red"}}>{error}</h1>
         </div>
     )

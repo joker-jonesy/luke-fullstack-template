@@ -1,7 +1,8 @@
 import {useDeletePostMutation, useGetPostAuthorQuery, useGetPostsQuery} from "../reducers/api";
 import Button from "./inputs/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faSpinner, faTrash} from "@fortawesome/free-solid-svg-icons";
+import Tags from "./Tags";
 
 function Post(props) {
 
@@ -18,9 +19,12 @@ function Post(props) {
     return (
         <div className={"post"}>
             {isLoading ? <FontAwesomeIcon icon={faSpinner} spin/> : <>
+                <div className={"info"}>
                 <h1>{data.username}</h1>
                 <p>{props.data.text}</p>
-                {props.delete && <Button click={() => onDelete(props.data.id)} theme={"primary"} vl={"DELETE"}/>}</>}
+                {props.delete && <FontAwesomeIcon className={"delete"} icon={faTrash} size="2x" onClick={()=>onDelete(props.data.id)}/>}</div>
+                <Tags data={props.data.post_tag}/>
+            </>}
         </div>
     )
 }

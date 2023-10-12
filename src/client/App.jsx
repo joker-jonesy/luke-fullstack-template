@@ -1,6 +1,5 @@
-import {useState, useEffect} from "react";
+
 import {useSelector} from "react-redux";
-import {useGetPostsQuery} from "./reducers/api";
 import {Route, Routes} from "react-router-dom";
 import AuthForm from "./pages/AuthForm";
 import Posts from "./pages/Posts";
@@ -8,6 +7,7 @@ import User from "./pages/User";
 
 function App() {
     const me = useSelector((state) => state.auth.credentials.user);
+
 
     return (
         <div className="App">
