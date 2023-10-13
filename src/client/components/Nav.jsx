@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useLogoutMutation} from "../reducers/auth";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {useSelector} from "react-redux";
+import logo from '../../../public/vite.svg'
 
 function Nav(){
 
@@ -16,7 +17,7 @@ function Nav(){
        <>
            <nav>
                <div className={"logo"}>
-
+                   <img src={logo} alt={"site logo"}/>
                </div>
 
                <div className={"link-container"}>
@@ -26,7 +27,7 @@ function Nav(){
                    {user.userId && <a onClick={logout}>Logout</a>}
                    {/*<div className={"profile"}>{user.userId && <h1>{user.username}</h1>}</div>*/}
                </div>
-               <FontAwesomeIcon className={"menu"} onClick={()=>setToggle(!toggle)} icon={faBars} />
+               <FontAwesomeIcon className={"menu"} onClick={()=>setToggle(!toggle)} icon={faBars} size={"2x"} />
            </nav>
            <div className="mobile_menu" style={{left: toggle?"0":"-100%"}}>
                <Link to="/">Posts</Link>

@@ -13,7 +13,7 @@ function Post (){
     return(
         <section className={"center"}>
             {isLoading? <FontAwesomeIcon icon={faSpinner} spin/>: !data ? <h1>Post Not Found</h1>:
-                
+
                 <div className={"post"}>
                         <div className={"info"}>
                             <h1>{data.author.username}</h1>
