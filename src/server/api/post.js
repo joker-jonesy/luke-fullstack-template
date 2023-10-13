@@ -47,6 +47,13 @@ router.get('/:id', async (req,res,next)=>{
             where:{
                 id: Number(req.params.id)
             },
+            include:{
+                post_tag:{
+                    include:{
+                        tag:true
+                    }
+                }
+            }
         });
 
 
