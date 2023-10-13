@@ -67,6 +67,9 @@ nav {
 nav a {
   color: #000000;
 }
+nav a {
+  cursor: pointer;
+}
 .logo {
   height: 100%;
   width: 60px;
@@ -133,6 +136,9 @@ body,
   min-height: 100vh;
   width: 100%;
   position: relative;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 .App {
   padding-top: 80px;
@@ -212,6 +218,31 @@ section {
 @media screen and (min-width: 750px) {
   section {
     flex-direction: column;
+  }
+}
+.form {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+}
+.form * {
+  margin: 10px 0;
+}
+.form label {
+  margin-bottom: 10px;
+}
+.form .error {
+  color: red;
+}
+@media screen and (min-width: 750px) {
+  .form {
+    border-radius: 8px;
+    width: 600px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .form {
+    width: 750px;
   }
 }
 .createForm .tags,

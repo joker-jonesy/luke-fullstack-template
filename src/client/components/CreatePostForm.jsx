@@ -40,6 +40,7 @@ function CreatePostForm(props){
             }).then(()=>{
                 console.log("added");
                 setText("");
+                setTags([]);
             }).catch(()=>{
                 console.log("error")
             })

@@ -91,12 +91,24 @@ router.post('/', async (req,res,next)=>{
                 tagId: i.id
             }
         })
-        
 
         const relations = await prisma.post_tag.createMany({
             data: convertedItems
         })
-        res.send(post)
+
+        const finalPost = await prisma.post.findFirst({
+            where:{
+                id:post.id
+            },
+            include:{
+                post_tag:{
+                    include:{
+                        tag:true
+                    }
+                }
+            }
+        })
+        res.send(finalPost)
     }catch(err){
         next(err)
     }
