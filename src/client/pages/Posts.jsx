@@ -8,6 +8,7 @@ function Posts() {
 
     const postsData = useGetPostsQuery();
     const posts = useSelector(state=>state.data.posts)
+    const me = useSelector(state=>state.auth);
 
     const [load, setLoad] = useState(true)
 
@@ -22,7 +23,7 @@ function Posts() {
                 : posts.length === 0||!posts
                     ? <h1>No Posts Listed</h1>
                     : posts.map((i, idx) =>
-                        <Link key={idx} to={"/post/"+i.id}><Post  data={i} delete={false}/></Link>)
+                        <Link key={idx} to={"/post/"+i.id}><Post  data={i} delete={me.admin}/></Link>)
             }
             </section>
     )
