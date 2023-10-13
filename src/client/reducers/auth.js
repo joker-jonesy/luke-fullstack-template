@@ -43,7 +43,7 @@ const authSlice = createSlice({
     initialState: {
         credentials : JSON.parse(window.sessionStorage.getItem(CREDENTIALS)) || {
             token:"",
-            user: {userId:null}
+            user: {userId:null, admin:false}
         }
     },
     reducers:{},
@@ -53,7 +53,7 @@ const authSlice = createSlice({
         builder.addMatcher(storeApi.endpoints.logout.matchFulfilled, (state)=>{
             state.credentials = {
                 token:"",
-                user: {userId:null}
+                user: {userId:null, admin:false}
             };
             window.sessionStorage.removeItem(CREDENTIALS)
         });

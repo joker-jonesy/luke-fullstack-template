@@ -8,7 +8,8 @@ function Posts() {
 
     const postsData = useGetPostsQuery();
     const posts = useSelector(state=>state.data.posts)
-    const me = useSelector(state=>state.auth);
+    const me = useSelector(state=>state.auth.credentials.user);
+    console.log(me)
 
     const [load, setLoad] = useState(true)
 
