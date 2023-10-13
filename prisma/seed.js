@@ -18,33 +18,31 @@ const posts = [
     }
 ]
 
-const generateData  = async()=>{
+const generateData = async () => {
 
     const salt_rounds = 5;
 
     const hashedPassword = await bcrypt.hash("test123", salt_rounds);
 
     const exsistingUser = prisma.user.findUnique({
-        id:1
+        id: 1
     })
 
-    if(!exsistingUser){
-        await prisma.user.create({
-            data:{
-                username: "joker_jonesy",
-                password:hashedPassword
-            }
-        })
-    }else{
-        console.log("user exists")
-    }
+    // if (exsistingUser) {
+    //     await prisma.user.create({
+    //         data: {
+    //             username: "joker_jonesy",
+    //             password: hashedPassword
+    //         }
+    //     })
+    // } else {
+    //     console.log("user exists")
+    // }
 
 
-    for(let i=0; i<posts.length; i++){
-        await prisma.post.create({
-            data:posts[i]
-        })
-    }
+    await prisma.post.createMany({
+        data: posts
+    })
 
 }
 

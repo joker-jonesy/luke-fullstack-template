@@ -11,31 +11,11 @@ router.get('/', async (req,res,next)=>{
                     include:{
                         tag:true
                     }
-                }
+                },
+                author:true
             }
         });
         res.send(allPosts)
-    }catch(err){
-        next(err)
-    }
-})
-
-router.get("/user/:id",async (req,res,next)=>{
-    try{
-        const post = await prisma.post.findUnique({
-            where:{
-                id: Number(req.params.id)
-            },
-        });
-
-        const user = await prisma.user.findUnique({
-            where:{
-                id: Number(post.authorId)
-            },
-        });
-
-
-        res.send({username: user.username})
     }catch(err){
         next(err)
     }
@@ -52,19 +32,12 @@ router.get('/:id', async (req,res,next)=>{
                     include:{
                         tag:true
                     }
-                }
+                },
+                author:true
             }
+
         });
-
-        const user = await prisma.user.findUnique({
-            where:{
-                id: Number(post.authorId)
-            },
-        });
-
-        post.author={username: user.username};
-
-
+        console.log(post);
         res.send(post)
     }catch(err){
         next(err)
