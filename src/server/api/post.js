@@ -56,6 +56,14 @@ router.get('/:id', async (req,res,next)=>{
             }
         });
 
+        const user = await prisma.user.findUnique({
+            where:{
+                id: Number(post.authorId)
+            },
+        });
+
+        post.author={username: user.username};
+
 
         res.send(post)
     }catch(err){

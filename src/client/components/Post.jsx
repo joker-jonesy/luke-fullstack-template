@@ -15,8 +15,6 @@ function Post(props) {
         })
     }
 
-    console.log(props.data)
-
     return (
         <div className={"post"}>
             {isLoading ? <FontAwesomeIcon icon={faSpinner} spin/> : <>

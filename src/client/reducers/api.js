@@ -24,6 +24,9 @@ export const api = createApi({
         getPosts: builder.query({
             query: ()=> '/api/posts'
         }),
+        getPost: builder.query({
+            query: (id)=> '/api/posts/'+id
+        }),
         getTags: builder.query({
             query: ()=> '/api/tags'
         }),
@@ -96,4 +99,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 
-export const {useGetUserPostsQuery, useGetPostAuthorQuery, useAddPostMutation, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useUpdatePostMutation} = api;
+export const {useGetUserPostsQuery, useGetPostAuthorQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useUpdatePostMutation} = api;

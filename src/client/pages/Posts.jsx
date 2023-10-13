@@ -2,6 +2,7 @@ import {useGetPostsQuery} from "../reducers/api";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import Post from "../components/Post";
+import {Link} from "react-router-dom";
 
 function Posts() {
 
@@ -15,16 +16,15 @@ function Posts() {
     }, [postsData])
 
     return (
-        <>
+
             <section>
             {load ? <h1>Loading...</h1>
                 : posts.length === 0||!posts
                     ? <h1>No Posts Listed</h1>
                     : posts.map((i, idx) =>
-                        <Post key={idx} data={i} delete={false}/>)
+                        <Link key={idx} to={"/post/"+i.id}><Post  data={i} delete={false}/></Link>)
             }
             </section>
-        </>
     )
 }
 
