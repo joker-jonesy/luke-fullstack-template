@@ -9,9 +9,9 @@ import Post from "./pages/Post";
 function App() {
     const me = useSelector((state) => state.auth.credentials.user);
 
-
     return (
         <div className="App">
+
             <Routes>
                 <Route index element={<Posts/>}/>
                 <Route path={"/register"} element={<AuthForm/>}/>

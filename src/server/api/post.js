@@ -93,7 +93,8 @@ router.post('/', async (req,res,next)=>{
                     include:{
                         tag:true
                     }
-                }
+                },
+                author:true
             }
         })
         res.send(finalPost)
@@ -108,8 +109,18 @@ router.put('/:id', async (req,res,next)=>{
             where:{
                 id: Number(req.params.id)
             },
-            data:req.body
+            data:req.body,
+            include:{
+                post_tag:{
+                    include:{
+                        tag:true
+                    }
+                },
+                author:true
+            }
+
         })
+
         res.send(post)
     }catch(err){
         next(err)

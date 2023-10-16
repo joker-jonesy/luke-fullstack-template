@@ -188,10 +188,11 @@ button:hover a {
   color: white;
 }
 input {
+  margin-top: 10px;
   outline: none;
-  border: none;
-  background-color: #cccccc;
-  color: #151515;
+  border: solid black 2px;
+  background-color: #696969;
+  color: white;
   height: 35px;
   display: flex;
   flex-wrap: wrap;
@@ -201,9 +202,6 @@ input {
   padding: 8px;
   width: 100%;
   border-radius: 35px;
-}
-input a {
-  color: #151515;
 }
 input:focus {
   border: blue 5px solid;
@@ -298,6 +296,11 @@ section {
   top: 25px;
   right: 25px;
   color: red;
+}
+.post .edit {
+  position: absolute;
+  top: 25px;
+  right: 75px;
 }
 .post .info {
   height: 100px;

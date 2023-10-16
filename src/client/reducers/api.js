@@ -22,7 +22,7 @@ export const api = createApi({
     }),
     endpoints: (builder) => ({
         getPosts: builder.query({
-            query: ()=> '/api/posts'
+            query: ()=> '/api/posts',
         }),
         getPost: builder.query({
             query: (id)=> '/api/posts/'+id
@@ -91,9 +91,18 @@ const dataSlice = createSlice({
             state.posts.push(payload);
             return state;
         })
+
+        builder.addMatcher(api.endpoints.editPost.matchFulfilled, (state, {payload})=>{
+            return {
+                ...state,
+                posts: state.posts.map(i=>i.id===payload.id?{...i, ...payload}:i)
+            }
+        })
+
+
     }
 })
 
 export default dataSlice.reducer;
 
-export const {useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery} = api;
+export const {useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;

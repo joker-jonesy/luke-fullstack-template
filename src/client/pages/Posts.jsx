@@ -3,13 +3,13 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import Post from "../components/Post";
 import {Link} from "react-router-dom";
+import useWebSockets from "../hooks/websocket";
 
 function Posts() {
 
     const postsData = useGetPostsQuery();
     const posts = useSelector(state=>state.data.posts)
     const me = useSelector(state=>state.auth.credentials.user);
-    console.log(me)
 
     const [load, setLoad] = useState(true)
 
@@ -24,7 +24,7 @@ function Posts() {
                 : posts.length === 0||!posts
                     ? <h1>No Posts Listed</h1>
                     : posts.map((i, idx) =>
-                        <Link key={idx} to={"/post/"+i.id}><Post  data={i} delete={me.admin}/></Link>)
+                        <Post key={idx} data={i} delete={me.admin}/>)
             }
             </section>
     )
