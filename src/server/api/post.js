@@ -3,68 +3,68 @@ const router = express.Router();
 const {PrismaClient} = require("@prisma/client");
 const prisma = new PrismaClient();
 
-router.get('/', async (req,res,next)=>{
-    try{
+router.get('/', async (req, res, next) => {
+    try {
         const allPosts = await prisma.post.findMany({
-            include:{
-                post_tag:{
-                    include:{
-                        tag:true
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
                     }
                 },
-                author:true
+                author: true
             }
         });
         res.send(allPosts)
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 })
 
-router.get('/:id', async (req,res,next)=>{
-    try{
+router.get('/:id', async (req, res, next) => {
+    try {
         const post = await prisma.post.findUnique({
-            where:{
+            where: {
                 id: Number(req.params.id)
             },
-            include:{
-                post_tag:{
-                    include:{
-                        tag:true
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
                     }
                 },
-                author:true
+                author: true
             }
 
         });
         console.log(post);
         res.send(post)
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 })
 
-router.delete('/:id', require('../auth/middleware'), async (req,res,next)=>{
+router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
 
-    if(!req.user){
+    if (!req.user) {
         res.send("not logged in")
         return;
     }
 
-    try{
+    try {
         const post = await prisma.post.delete({
-            where:{
+            where: {
                 id: Number(req.params.id)
             }
         });
         res.send(post)
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 })
 
-router.post('/', async (req,res,next)=>{
-    try{
+router.post('/', async (req, res, next) => {
+    try {
 
         const post = await prisma.post.create({
             data: {
@@ -73,7 +73,7 @@ router.post('/', async (req,res,next)=>{
             }
         })
 
-        const convertedItems = req.body.tags.map((i)=>{
+        const convertedItems = req.body.tags.map((i) => {
             return {
                 postId: post.id,
                 tagId: i.id
@@ -85,44 +85,67 @@ router.post('/', async (req,res,next)=>{
         })
 
         const finalPost = await prisma.post.findFirst({
-            where:{
-                id:post.id
+            where: {
+                id: post.id
             },
-            include:{
-                post_tag:{
-                    include:{
-                        tag:true
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
                     }
                 },
-                author:true
+                author: true
             }
         })
         res.send(finalPost)
-    }catch(err){
+    } catch (err) {
         next(err)
     }
 })
 
-router.put('/:id', async (req,res,next)=>{
-    try{
+router.put('/:id', async (req, res, next) => {
+    try {
         const post = await prisma.post.update({
-            where:{
+            where: {
                 id: Number(req.params.id)
             },
-            data:req.body,
-            include:{
-                post_tag:{
-                    include:{
-                        tag:true
-                    }
-                },
-                author:true
+            data: {
+                text: req.body.text,
+                authorId: req.body.authorId
             }
-
         })
 
-        res.send(post)
-    }catch(err){
+        await prisma.post_tag.deleteMany({
+            where: {
+                postId: Number(req.params.id)
+            },
+        })
+
+        await prisma.post_tag.createMany({
+            data: req.body.tags.map((i) => {
+                return {
+                    postId: post.id,
+                    tagId: i.id
+                }
+            })
+        })
+        
+        const finalPost = await prisma.post.findFirst({
+            where: {
+                id: post.id
+            },
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
+                    }
+                },
+                author: true
+            }
+        })
+
+        res.send(finalPost)
+    } catch (err) {
         next(err)
     }
 })

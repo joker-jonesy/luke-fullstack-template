@@ -1,7 +1,7 @@
-import {useDeletePostMutation, useEditPostMutation} from "../reducers/api";
+import {useDeletePostMutation, useEditPostMutation, useGetTagsQuery} from "../reducers/api";
 import Button from "./inputs/Button";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faWrench, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faWrench, faTrash, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Tags from "./Tags";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -13,6 +13,9 @@ function Post(props) {
     const [text, setText] = useState(props.data.text)
     const [deletePost] = useDeletePostMutation();
     const [editPost] = useEditPostMutation();
+    const {data, isLoading} = useGetTagsQuery();
+    const [tags, setTags] = useState([]);
+    const [change, setChange] = useState(false)
     const onDelete = async (e) => {
         e.preventDefault();
         await deletePost(props.data.id).then(() => {
@@ -21,13 +24,26 @@ function Post(props) {
         })
     }
 
+    const toggleTag = (tag) => {
+        const newTags = tags;
+        if (tags.find((i) => i.name === tag.name)) {
+            const index = tags.indexOf(tag);
+            newTags.splice(index, 1);
+            setTags(newTags)
+        } else {
+            newTags.push(tag);
+            setTags(newTags)
+        }
+        setChange(!change)
+    }
+
     const onUpdate = async () => {
         await editPost(
             {
                 id: props.data.id,
                 text: text,
                 authorId: props.data.authorId,
-                tags: props.data.tags
+                tags: tags
             }
         ).then(() => {
             console.log("modified")
@@ -37,9 +53,15 @@ function Post(props) {
     }
 
     useEffect(() => {
-        onUpdate();
+
+        setTags(props.data.post_tag.map((i) => {
+            return i.tag
+        }))
 
     }, [edit])
+
+    useEffect(() => {
+    }, [change])
 
     return (
         <>
@@ -50,7 +72,7 @@ function Post(props) {
 
                         <div className={"info"}>
                             <h1>{props.data.author.username}</h1>
-                             <p>{props.data.text}</p>
+                            <p>{props.data.text}</p>
                             {props.delete &&
                                 <FontAwesomeIcon className={"delete"} icon={faTrash} size="2x" onClick={onDelete}/>}
                             {props.delete &&
@@ -74,10 +96,16 @@ function Post(props) {
                             {props.delete &&
                                 <FontAwesomeIcon className={"edit"} icon={faWrench} size="2x" onClick={(event) => {
                                     event.preventDefault();
+                                    onUpdate();
                                     setEdit(!edit)
                                 }}/>}
                         </div>
-                        <Tags data={props.data.post_tag}/>
+                        <div className={"tags"}>
+                            {isLoading ? <FontAwesomeIcon icon={faSpinner} spin/> : data.map((i) =>
+                                <div key={i.id} className={"tag"} onClick={() => toggleTag({name: i.name, id: i.id})}
+                                     style={{border: tags.find(x => i.name === x.name) ? "3px solid blue" : "none"}}>{i.name}</div>
+                            )}
+                        </div>
 
                     </div>
 

@@ -36,4 +36,6 @@ model post_tag {
   postId Int
   tag    tag  @relation(fields: [tagId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   tagId  Int
+
+  @@unique([postId, tagId])
 }
