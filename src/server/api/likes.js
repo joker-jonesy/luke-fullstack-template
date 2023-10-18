@@ -52,7 +52,8 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
                     }
                 },
                 author: true,
-                like: true
+                like: true,
+                comment:true
             }
         })
         res.send(finalPost)

@@ -252,6 +252,8 @@ section {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  box-sizing: border-box;
+  padding: 8px 0;
 }
 .createForm .tags .tag,
 .post .tags .tag {
@@ -266,13 +268,17 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 0 0 8px;
+  margin: 0 8px 0 0;
   box-sizing: border-box;
   padding: 8px;
 }
 .createForm .tags .tag a,
 .post .tags .tag a {
   color: white;
+}
+.createForm .tags .tag h3,
+.post .tags .tag h3 {
+  text-align: center;
 }
 .post {
   background-color: #cccccc;
@@ -283,13 +289,22 @@ section {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 250px;
+  min-height: 250px;
   box-sizing: border-box;
-  padding: 8px 16px;
+  padding: 8px 16px 45px 16px;
   position: relative;
 }
 .post a {
   color: #151515;
+}
+.post h1,
+.post h2,
+.post h3,
+.post h4,
+.post h5,
+.post h6 {
+  width: 100%;
+  text-align: left;
 }
 .post .delete {
   position: absolute;
@@ -327,6 +342,29 @@ section {
   .post {
     width: 750px;
   }
+}
+.comments {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 30px;
+  width: 100%;
+  margin: 8px 0;
+}
+.comments .comment {
+  border-radius: 8px;
+  background-color: #696969;
+  color: white;
+  width: 100%;
+  min-height: 50px;
+  box-sizing: border-box;
+  padding: 4px;
+  margin-bottom: 8px;
+}
+.comments .comment a {
+  color: white;
 }
 .likes {
   position: absolute;

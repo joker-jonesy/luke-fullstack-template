@@ -8,12 +8,13 @@ datasource db {
 }
 
 model user {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
+  id       Int       @id @default(autoincrement())
+  username String    @unique
   password String
   posts    post[]
-  admin    Boolean @default(false)
+  admin    Boolean   @default(false)
   like     like[]
+  comment  comment[]
 }
 
 model post {
@@ -24,6 +25,7 @@ model post {
   post_tag  post_tag[]
   like      like[]
   createdAt DateTime   @default(now())
+  comment   comment[]
 }
 
 model tag {
@@ -33,11 +35,12 @@ model tag {
 }
 
 model post_tag {
-  id     Int  @id @default(autoincrement())
-  post   post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  postId Int
-  tag    tag  @relation(fields: [tagId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  tagId  Int
+  id        Int  @id @default(autoincrement())
+  post      post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  postId    Int
+  tag       tag  @relation(fields: [tagId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  tagId     Int
+  commentId Int?
 }
 
 model like {
@@ -47,4 +50,14 @@ model like {
   user   user?  @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   userId Int?
   type   String
+}
+
+model comment {
+  id        Int      @id @default(autoincrement())
+  author    user?    @relation(fields: [authorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  authorId  Int?
+  post      post     @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  postId    Int
+  text      String
+  createdAt DateTime @default(now())
 }

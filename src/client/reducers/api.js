@@ -50,6 +50,13 @@ export const api = createApi({
                 body:body
             })
         }),
+        addComment : builder.mutation({
+            query:(body)=>({
+                url:'/api/comments',
+                method:"POST",
+                body:body
+            })
+        }),
         editPost: builder.mutation({
             query(data){
                 const {id, ...body}=data;
@@ -119,4 +126,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 
-export const { useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;
+export const { useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;

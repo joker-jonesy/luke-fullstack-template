@@ -13,7 +13,12 @@ router.get('/', async (req, res, next) => {
                     }
                 },
                 author: true,
-                like: true
+                like: true,
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
             }
         });
         res.send(allPosts)
@@ -35,7 +40,8 @@ router.get('/:id', async (req, res, next) => {
                     }
                 },
                 author: true,
-                like: true
+                like: true,
+                comment:true
             }
 
         });
@@ -93,7 +99,8 @@ router.post('/', async (req, res, next) => {
                     }
                 },
                 author: true,
-                like: true
+                like: true,
+                comment:true
             }
         })
         res.send(finalPost)
@@ -146,7 +153,8 @@ router.put('/:id', async (req, res, next) => {
                     }
                 },
                 author: true,
-                like: true
+                like: true,
+                comment:true
             }
         })
 

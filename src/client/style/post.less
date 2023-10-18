@@ -3,6 +3,7 @@
     width: 100%;
     .flexInit();
     .flexStartRow();
+    .pad(8px 0);
 
     .tag{
       height: 45px;
@@ -12,7 +13,11 @@
       .minor();
       .flexInit();
       .flexCenterColumn();
-      margin: 0 0 0 8px;
+      margin: 0 8px 0 0;
+
+      h3{
+        text-align: center;
+      }
 
       .pad(8px);
     }
@@ -26,9 +31,14 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 250px;
-  .pad(8px 16px);
+  min-height: 250px;
+  .pad(8px 16px 45px 16px);
   position: relative;
+
+  h1,h2,h3,h4,h5,h6{
+    width: 100%;
+    text-align: left;
+  }
 
   .delete{
     position: absolute;
@@ -72,6 +82,23 @@
   }
 }
 
+.comments{
+  .flexInit();
+  .flexStartColumn();
+  min-height: 30px;
+  width: 100%;
+  margin: 8px 0;
+
+  .comment{
+    .rounded();
+    .tint();
+    width: 100%;
+    min-height: 50px;
+    .pad(4px);
+    margin-bottom: 8px;
+  }
+}
+
 .likes{
   position: absolute;
   bottom: 0;
@@ -80,6 +107,7 @@
   .flexAroundRow();
   .pad(8px);
   width: 200px;
+
 
   .slot{
     .flexInit();

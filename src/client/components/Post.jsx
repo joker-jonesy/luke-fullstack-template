@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
 import Likes from "./Likes";
+import Comments from "./Comments";
 
 function Post(props) {
 
@@ -82,8 +83,10 @@ function Post(props) {
                                     setEdit(!edit)
                                 }}/>}
                             <Likes data={props.data.like} postId={props.data.id}/>
+
                         </div>
-                        <Tags data={props.data.post_tag}/>
+                        {props.data.post_tag.length!==0&&<Tags data={props.data.post_tag}/>}
+                        {props.data.comment.length!==0&&<Comments data={props.data.comment} postId={props.data.id}/>}
                     </Link>
 
                     :
