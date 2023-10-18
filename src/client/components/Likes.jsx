@@ -25,10 +25,10 @@ function Likes ({data, postId}){
     return(
         <div className="likes">
             <div className={"slot"}>
-                {me.userId?<Button click={()=>onSubmit("like")} vl={<><FontAwesomeIcon icon={faThumbsUp}/><span>{likes}</span></>}/>:<div><FontAwesomeIcon icon={faThumbsUp}/><span>{likes}</span></div>}
+                {me.userId?<Button theme={data.find(i=>i.userId===me.userId&&i.type==="like")&&"chose"} click={()=>onSubmit("like")} vl={<><FontAwesomeIcon icon={faThumbsUp}/><span>{likes}</span></>}/>:<div style={{border:data.find(i=>i.userId===me.userId&&i.type==="like"?"solid 2px gold":"none")}}><FontAwesomeIcon icon={faThumbsUp}/><span>{likes}</span></div>}
             </div>
             <div className={"slot"}>
-                {me.userId?<Button click={()=>onSubmit("dislike")} vl={<><FontAwesomeIcon icon={faThumbsDown}/><span>{dislikes}</span></>}/>:<div><FontAwesomeIcon icon={faThumbsDown}/><span>{dislikes}</span></div>}
+                {me.userId?<Button theme={data.find(i=>i.userId===me.userId&&i.type==="dislike")&&"chose"} click={()=>onSubmit("dislike")} vl={<><FontAwesomeIcon icon={faThumbsDown}/><span>{dislikes}</span></>}/>:<div  style={{border:data.find(i=>i.userId===me.userId&&i.type==="dislike"?"solid 2px gold":"none")}}><FontAwesomeIcon icon={faThumbsDown}/><span>{dislikes}</span></div>}
             </div>
         </div>
     )

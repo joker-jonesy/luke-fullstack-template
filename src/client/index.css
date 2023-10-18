@@ -348,6 +348,9 @@ section {
   justify-content: space-around;
   align-items: center;
 }
+.likes .slot .chose {
+  border: solid 2px gold;
+}
 .likes .slot div {
   display: flex;
   flex-wrap: wrap;
