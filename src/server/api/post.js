@@ -12,7 +12,8 @@ router.get('/', async (req, res, next) => {
                         tag: true
                     }
                 },
-                author: true
+                author: true,
+                like: true
             }
         });
         res.send(allPosts)
@@ -33,7 +34,8 @@ router.get('/:id', async (req, res, next) => {
                         tag: true
                     }
                 },
-                author: true
+                author: true,
+                like: true
             }
 
         });
@@ -45,11 +47,6 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
-
-    if (!req.user) {
-        res.send("not logged in")
-        return;
-    }
 
     try {
         const post = await prisma.post.delete({
@@ -63,7 +60,9 @@ router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
     }
 })
 
+
 router.post('/', async (req, res, next) => {
+
     try {
 
         const post = await prisma.post.create({
@@ -94,7 +93,8 @@ router.post('/', async (req, res, next) => {
                         tag: true
                     }
                 },
-                author: true
+                author: true,
+                like: true
             }
         })
         res.send(finalPost)
@@ -104,6 +104,12 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:id', async (req, res, next) => {
+
+    if (!req.user) {
+        res.send("not logged in")
+        return;
+    }
+
     try {
         const post = await prisma.post.update({
             where: {
@@ -129,7 +135,7 @@ router.put('/:id', async (req, res, next) => {
                 }
             })
         })
-        
+
         const finalPost = await prisma.post.findFirst({
             where: {
                 id: post.id
@@ -140,7 +146,8 @@ router.put('/:id', async (req, res, next) => {
                         tag: true
                     }
                 },
-                author: true
+                author: true,
+                like: true
             }
         })
 

@@ -328,6 +328,56 @@ section {
     width: 750px;
   }
 }
+.likes {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px;
+  width: 200px;
+}
+.likes .slot {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.likes .slot div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  width: 90px;
+  box-sizing: border-box;
+  padding: 8px 25px;
+  border-radius: 30px;
+  border: none;
+  margin: 0;
+  line-height: 0;
+  outline: none;
+  background-color: #efefef;
+  color: #000000;
+  transition: 0.125s;
+}
+.likes .slot div a {
+  color: #000000;
+}
+.likes .slot button {
+  width: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .createForm {
   width: 100%;
   flex-direction: column;

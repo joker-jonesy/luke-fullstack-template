@@ -39,6 +39,13 @@ export const api = createApi({
         addPost: builder.mutation({
             query:(body)=>({
                 url:'/api/posts',
+                method:"PUT",
+                body:body
+            })
+        }),
+        likePost : builder.mutation({
+            query:(body)=>({
+                url:'/api/likes',
                 method:"POST",
                 body:body
             })
@@ -92,6 +99,13 @@ const dataSlice = createSlice({
             return state;
         })
 
+        builder.addMatcher(api.endpoints.likePost.matchFulfilled, (state, {payload})=>{
+            return {
+                ...state,
+                posts: state.posts.map(i=>i.id===payload.id?{...i, ...payload}:i)
+            }
+        })
+
         builder.addMatcher(api.endpoints.editPost.matchFulfilled, (state, {payload})=>{
             return {
                 ...state,
@@ -105,4 +119,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 
-export const {useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;
+export const { useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;

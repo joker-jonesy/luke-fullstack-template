@@ -72,6 +72,41 @@
   }
 }
 
+.likes{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  .flexInit();
+  .flexAroundRow();
+  .pad(8px);
+  width: 200px;
+
+  .slot{
+    .flexInit();
+    .flexAroundRow();
+    div{
+      .flexInit();
+      .flexBetweenRow();
+      height: 30px;
+      width: 90px;
+      .pad(8px 25px);
+      border-radius: 30px;
+      border: none;
+      margin: 0;
+      line-height: 0;
+      outline: none;
+      .main();
+      transition: 0.125s;
+    }
+
+    button{
+      width: 90px;
+      .flexInit();
+      .flexBetweenRow();
+    }
+  }
+}
+
 .createForm{
   width: 100%;
   flex-direction: column;

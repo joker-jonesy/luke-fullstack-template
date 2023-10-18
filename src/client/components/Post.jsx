@@ -6,6 +6,7 @@ import Tags from "./Tags";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
+import Likes from "./Likes";
 
 function Post(props) {
 
@@ -80,6 +81,7 @@ function Post(props) {
                                     event.preventDefault();
                                     setEdit(!edit)
                                 }}/>}
+                            <Likes data={props.data.like} postId={props.data.id}/>
                         </div>
                         <Tags data={props.data.post_tag}/>
                     </Link>
