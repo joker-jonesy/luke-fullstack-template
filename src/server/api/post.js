@@ -39,7 +39,6 @@ router.get('/:id', async (req, res, next) => {
             }
 
         });
-        console.log(post);
         res.send(post)
     } catch (err) {
         next(err)

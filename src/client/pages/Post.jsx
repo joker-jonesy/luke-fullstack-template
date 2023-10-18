@@ -3,6 +3,7 @@ import {useGetPostQuery} from "../reducers/api";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner, faTrash} from "@fortawesome/free-solid-svg-icons";
 import Tags from "../components/Tags";
+import Likes from "../components/Likes";
 
 
 function Post (){
@@ -18,6 +19,7 @@ function Post (){
                         <div className={"info"}>
                             <h1>{data.author.username}</h1>
                             <p>{data.text}</p>
+                            <Likes data={data.like} postId={data.id}/>
                         <Tags data={data.post_tag}/>
                         </div>
                 </div>
