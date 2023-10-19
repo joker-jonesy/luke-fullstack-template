@@ -9,7 +9,7 @@ function Tags(props) {
             <div className="tags">
                 {props.data ? props.data.map((i, idx) =>
                     <div className="tag" key={idx}>
-                        <h3>{i.tag.name}</h3>
+                        {i.tag.name}
                     </div>
                 ) : props.data === undefined ? "" : <FontAwesomeIcon icon={faSpinner} spin/>}
             </div>

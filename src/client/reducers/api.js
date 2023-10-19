@@ -36,6 +36,12 @@ export const api = createApi({
                 method:'DELETE'
             })
         }),
+        deleteComment:builder.mutation({
+            query:(id)=>({
+                url:'/api/comments/'+id,
+                method:'DELETE'
+            })
+        }),
         addPost: builder.mutation({
             query:(body)=>({
                 url:'/api/posts',
@@ -76,7 +82,8 @@ const dataSlice = createSlice({
     initialState:{
         posts:[],
         tags:[],
-        post:null
+        post:null,
+        result:[]
     },
     reducers:{},
     extraReducers: (builder)=>{
@@ -131,7 +138,16 @@ const dataSlice = createSlice({
         builder.addMatcher(api.endpoints.addComment.matchFulfilled, (state, {payload})=>{
             return{
                 ...state,
-                post: payload
+                post: payload.post,
+                posts: payload.allPosts
+            }
+        })
+
+        builder.addMatcher(api.endpoints.deleteComment.matchFulfilled, (state, {payload})=>{
+            return{
+                ...state,
+                post: payload.post,
+                posts: payload.allPosts
             }
         })
 
@@ -141,4 +157,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 
-export const { useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;
+export const {useDeleteCommentMutation, useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;

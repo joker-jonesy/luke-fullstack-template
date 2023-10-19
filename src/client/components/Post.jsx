@@ -8,6 +8,8 @@ import TextInput from "./inputs/TextInput";
 import Likes from "./Likes";
 import Comments from "./Comments";
 import {useSelector} from "react-redux";
+import Overlay from "./Overlay";
+import CreateCommentForm from "./CreateCommentForm";
 
 function Post(props) {
     const me = useSelector(state=>state.auth.credentials.user);
@@ -18,6 +20,7 @@ function Post(props) {
     const [editPost] = useEditPostMutation();
     const {data, isLoading} = useGetTagsQuery();
     const [tags, setTags] = useState([]);
+    const [toggle,setToggle]=useState(false);
     const [change, setChange] = useState(false)
     const onDelete = async (e) => {
         e.preventDefault();
@@ -69,9 +72,9 @@ function Post(props) {
     return (
         <>
             {
-                !edit ?
+                !edit ?<>
 
-                    <Link to={"/post/" + props.data.id} className={"post"}>
+                    <div className={"post"}>
 
                         <div className={"info"}>
                             <h1>{props.data.author.username}</h1>
@@ -83,11 +86,29 @@ function Post(props) {
                                     event.preventDefault();
                                     setEdit(!edit)
                                 }}/>}
+                            <Link to={"/post/" + props.data.id}>See More</Link>
                             <Likes data={props.data.like} postId={props.data.id}/>
                         </div>
                         {props.data.post_tag.length!==0&&<Tags data={props.data.post_tag}/>}
-                        {props.data.comment.length!==0&&<h3>{props.data.comment.length} Comments</h3>}
-                    </Link>
+                        {props.data.comment.length!==0?<h3 onClick={()=>setToggle(!toggle)}>{props.data.comment.length} Comments</h3>:<h3>No Comments Yet</h3>}
+                    </div>
+                    <Overlay show={toggle} toggle={()=>setToggle(!toggle)}>
+                        <div className={"fillOverlay"}>
+                        <div className={"post"}>
+                            <div className={"info"}>
+                                <h1>{props.data.author.username}</h1>
+                                <p>{props.data.text}</p>
+                                <Likes data={props.data.like} postId={props.data.id}/>
+                            </div>
+                            {props.data.comment!==0&&<Comments data={props.data.comment} postId={props.data.id} edit={me.userId===props.data.authorId||props.delete}/> }
+                            {props.data.post_tag.length!==0&&<Tags data={props.data.post_tag}/>}
+                        </div>
+                        {me.userId&&
+                            <CreateCommentForm postId={props.data.id}/>
+                        }
+                        </div>
+                    </Overlay>
+                    </>
 
                     :
 

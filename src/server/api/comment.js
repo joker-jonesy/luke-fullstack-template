@@ -31,7 +31,72 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
             }
         }
     });
-    res.send(post)
+    const allPosts = await prisma.post.findMany({
+        include: {
+            post_tag: {
+                include: {
+                    tag: true
+                }
+            },
+            author: true,
+            like: true,
+            comment: {
+                include:{
+                    author:true
+                }
+            }
+        }
+    });
+    res.send({post, allPosts})
 });
+
+router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
+
+    try {
+        const comment = await prisma.comment.delete({
+            where: {
+                id: Number(req.params.id)
+            }
+        });
+        const post = await prisma.post.findUnique({
+            where: {
+                id: Number(comment.postId)
+            },
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
+                    }
+                },
+                author: true,
+                like: true,
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
+            }
+        });
+        const allPosts = await prisma.post.findMany({
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
+                    }
+                },
+                author: true,
+                like: true,
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
+            }
+        });
+        res.send({post, allPosts})
+    } catch (err) {
+        next(err)
+    }
+})
 
 module.exports = router;

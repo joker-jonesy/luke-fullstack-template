@@ -34,12 +34,12 @@ function Post() {
                         <p>{post.text}</p>
                         <Likes data={post.like} postId={post.id}/>
                     </div>
-                    {post.comment!==0&&<Comments data={post.comment} postId={post.id}/>}
+                    {post.comment!==0&&<Comments data={post.comment} postId={post.id} edit={me.userId===post.authorId||props.delete}/> }
                     {post.post_tag.length!==0&&<Tags data={post.post_tag}/>}
                 </div>
-                {me.userId&&<div className="overlay">
+                {me.userId&&
                     <CreateCommentForm postId={post.id}/>
-                </div>}
+                }
             </>
 
 

@@ -167,6 +167,7 @@ button {
   background-color: #efefef;
   color: #000000;
   transition: 0.125s;
+  box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 2px;
 }
 button a {
   color: #000000;
@@ -243,6 +244,39 @@ section {
     width: 750px;
   }
 }
+.overlay {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(204, 204, 204, 0.8);
+  z-index: 100;
+  box-sizing: border-box;
+  padding: 16px;
+}
+.overlay .close {
+  color: red;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  cursor: pointer;
+}
+.fillOverlay {
+  background-color: #efefef;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 8px;
+  overflow-y: scroll;
+}
+.fillOverlay .post {
+  background: none;
+}
 .createForm .tags,
 .post .tags {
   width: 100%;
@@ -296,7 +330,26 @@ section {
   position: relative;
 }
 .post a {
+  text-decoration: underline;
+}
+.post a,
+.post p,
+.post h1,
+.post h3 {
+  margin-bottom: 8px;
+}
+.post h3 {
+  cursor: pointer;
+}
+.post h3:hover {
+  text-decoration: underline;
+}
+.post a {
   color: #151515;
+}
+.post.fillOverlay {
+  background-color: #efefef;
+  border-radius: 8px;
 }
 .post h1,
 .post h2,
@@ -319,7 +372,7 @@ section {
   right: 75px;
 }
 .post .info {
-  height: 100px;
+  min-height: 100px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -353,6 +406,7 @@ section {
   min-height: 30px;
   width: 100%;
   margin: 8px 0;
+  position: relative;
 }
 .comments .comment {
   border-radius: 8px;
@@ -363,9 +417,17 @@ section {
   box-sizing: border-box;
   padding: 4px;
   margin-bottom: 8px;
+  position: relative;
 }
 .comments .comment a {
   color: white;
+}
+.comments .comment .delete {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: red;
+  cursor: pointer;
 }
 .likes {
   position: absolute;
@@ -442,6 +504,10 @@ section {
   height: 250px;
   box-sizing: border-box;
   padding: 8px;
+}
+.createForm.fillOverlay {
+  background-color: #efefef;
+  border-radius: 8px;
 }
 .createForm * {
   margin: 8px 0;
