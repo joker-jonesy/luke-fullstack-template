@@ -53,7 +53,11 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
                 },
                 author: true,
                 like: true,
-                comment:true
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
             }
         })
         res.send(finalPost)

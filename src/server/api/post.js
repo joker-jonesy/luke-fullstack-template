@@ -118,11 +118,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
 
-    if (!req.user) {
-        res.send("not logged in")
-        return;
-    }
-
     try {
         const post = await prisma.post.update({
             where: {

@@ -45,7 +45,7 @@ export const api = createApi({
         addPost: builder.mutation({
             query:(body)=>({
                 url:'/api/posts',
-                method:"PUT",
+                method:"POST",
                 body:body
             })
         }),
