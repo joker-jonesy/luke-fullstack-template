@@ -1,11 +1,11 @@
-.createForm,.post{
-  .tags{
+.createForm, .post {
+  .tags {
     width: 100%;
     .flexInit();
     .flexStartRow();
     .pad(8px 0);
 
-    .tag{
+    .tag {
       height: 45px;
       min-width: 80px;
       border-radius: 45px;
@@ -15,7 +15,7 @@
       .flexCenterColumn();
       margin: 0 8px 0 0;
 
-      h3{
+      h3, button {
         text-align: center;
       }
 
@@ -24,7 +24,7 @@
   }
 }
 
-.post{
+.post {
   .side();
   width: 100%;
   .flexInit();
@@ -35,61 +35,61 @@
   .pad(8px 16px 45px 16px);
   position: relative;
 
-  h1,h2,h3,h4,h5,h6{
+  h1, h2, h3, h4, h5, h6 {
     width: 100%;
     text-align: left;
   }
 
-  .delete{
+  .delete {
     position: absolute;
     top: 25px;
     right: 25px;
     color: @warn;
   }
 
-  .edit{
+  .edit {
     position: absolute;
     top: 25px;
     right: 75px;
   }
 
-  .info{
+  .info {
     height: 100px;
     width: 100%;
     .flexInit();
     flex-direction: column;
 
-    h1{
+    h1 {
       text-decoration: underline;
       font-size: 36px;
     }
 
-    p{
+    p {
       font-size: 24px;
     }
 
   }
 
 
-  @media screen and (min-width: @tablet){
+  @media screen and (min-width: @tablet) {
     .rounded();
     width: @mb;
     margin: 8px 0;
   }
 
-  @media screen and (min-width: @desktop){
+  @media screen and (min-width: @desktop) {
     width: @tablet;
   }
 }
 
-.comments{
+.comments {
   .flexInit();
   .flexStartColumn();
   min-height: 30px;
   width: 100%;
   margin: 8px 0;
 
-  .comment{
+  .comment {
     .rounded();
     .tint();
     width: 100%;
@@ -99,7 +99,7 @@
   }
 }
 
-.likes{
+.likes {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -109,15 +109,15 @@
   width: 200px;
 
 
-  .slot{
+  .slot {
     .flexInit();
     .flexAroundRow();
 
-    .chose{
+    .chose {
       border: solid 2px gold;
     }
 
-    div{
+    div {
       .flexInit();
       .flexBetweenRow();
       height: 30px;
@@ -132,7 +132,7 @@
       transition: 0.125s;
     }
 
-    button{
+    button {
       width: 90px;
       .flexInit();
       .flexBetweenRow();
@@ -140,7 +140,25 @@
   }
 }
 
-.createForm{
+.post {
+  .createForm {
+
+    @media screen and (min-width: @tablet) {
+      width: 100%;
+      margin: 0;
+      border: none;
+    }
+
+    @media screen and (min-width: @desktop) {
+      width: 100%;
+      margin: 0;
+      border: none;
+    }
+
+  }
+}
+
+.createForm {
   width: 100%;
   flex-direction: column;
   justify-content: space-evenly;
@@ -148,7 +166,11 @@
   height: 250px;
   .pad(8px);
 
-  @media screen and (min-width: @tablet){
+  * {
+    margin: 8px 0;
+  }
+
+  @media screen and (min-width: @tablet) {
     width: @mb;
     margin: 8px 0;
     border: 5px solid @minor;
@@ -156,24 +178,21 @@
     .rounded();
   }
 
-  @media screen and (min-width: @desktop){
+  @media screen and (min-width: @desktop) {
     width: @tablet;
   }
 
-  *{
-    margin: 8px 0;
-  }
 
-  .tags{
-    .tag{
+  .tags {
+    .tag {
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         background-color: black;
         color: @f3;
       }
     }
   }
-
 
 
 }

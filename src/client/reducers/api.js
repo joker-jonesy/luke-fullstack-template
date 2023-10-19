@@ -75,7 +75,8 @@ const dataSlice = createSlice({
     name:"data",
     initialState:{
         posts:[],
-        tags:[]
+        tags:[],
+        post:null
     },
     reducers:{},
     extraReducers: (builder)=>{
@@ -83,6 +84,13 @@ const dataSlice = createSlice({
             return{
                 ...state,
                 tags: payload
+            }
+        })
+
+        builder.addMatcher(api.endpoints.getPost.matchFulfilled, (state, {payload})=>{
+            return{
+                ...state,
+                post: payload
             }
         })
 
@@ -117,6 +125,13 @@ const dataSlice = createSlice({
             return {
                 ...state,
                 posts: state.posts.map(i=>i.id===payload.id?{...i, ...payload}:i)
+            }
+        })
+
+        builder.addMatcher(api.endpoints.addComment.matchFulfilled, (state, {payload})=>{
+            return{
+                ...state,
+                post: payload
             }
         })
 

@@ -41,9 +41,12 @@ router.get('/:id', async (req, res, next) => {
                 },
                 author: true,
                 like: true,
-                comment:true
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
             }
-
         });
         res.send(post)
     } catch (err) {
@@ -100,7 +103,11 @@ router.post('/', async (req, res, next) => {
                 },
                 author: true,
                 like: true,
-                comment:true
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
             }
         })
         res.send(finalPost)
@@ -154,7 +161,11 @@ router.put('/:id', async (req, res, next) => {
                 },
                 author: true,
                 like: true,
-                comment:true
+                comment: {
+                    include:{
+                        author:true
+                    }
+                }
             }
         })
 

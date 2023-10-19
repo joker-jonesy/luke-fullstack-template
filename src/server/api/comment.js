@@ -4,21 +4,18 @@ const {PrismaClient} = require("@prisma/client");
 const prisma = new PrismaClient();
 
 router.post('/', require('../auth/middleware'), async (req, res, next) => {
-    const comment = await prisma.comment.create({
+    await prisma.comment.create({
         data: {
-            authorId:  Number(req.body.userId),
-            text:  Number(req.body.text)
+            authorId:  Number(req.body.authorId),
+            postId:Number(req.body.postId),
+            text:  req.body.text
         }
     });
 
-    await prisma.post_comment.create({
-        data: {
-            postId:  Number(req.body.postId),
-            commentId:  Number(comment.id)
-        }
-    });
-
-    const allPosts = await prisma.post.findMany({
+    const post = await prisma.post.findUnique({
+        where: {
+            id: Number(req.body.postId)
+        },
         include: {
             post_tag: {
                 include: {
@@ -27,14 +24,14 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
             },
             author: true,
             like: true,
-            post_comment:{
+            comment: {
                 include:{
-                    comment:true
+                    author:true
                 }
             }
         }
     });
-    res.send(allPosts)
+    res.send(post)
 });
 
 module.exports = router;

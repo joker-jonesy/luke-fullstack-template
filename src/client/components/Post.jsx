@@ -1,5 +1,4 @@
 import {useDeletePostMutation, useEditPostMutation, useGetTagsQuery} from "../reducers/api";
-import Button from "./inputs/Button";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faWrench, faTrash, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Tags from "./Tags";
@@ -8,8 +7,10 @@ import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
 import Likes from "./Likes";
 import Comments from "./Comments";
+import {useSelector} from "react-redux";
 
 function Post(props) {
+    const me = useSelector(state=>state.auth.credentials.user);
 
     const [edit, setEdit] = useState(false);
     const [text, setText] = useState(props.data.text)
@@ -83,10 +84,9 @@ function Post(props) {
                                     setEdit(!edit)
                                 }}/>}
                             <Likes data={props.data.like} postId={props.data.id}/>
-
                         </div>
                         {props.data.post_tag.length!==0&&<Tags data={props.data.post_tag}/>}
-                        {props.data.comment.length!==0&&<Comments data={props.data.comment} postId={props.data.id}/>}
+                        {props.data.comment.length!==0&&<h3>{props.data.comment.length} Comments</h3>}
                     </Link>
 
                     :

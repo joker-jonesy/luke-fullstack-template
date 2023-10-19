@@ -1,4 +1,6 @@
-function Comments({data, postId}) {
+
+
+function Comments({data}) {
     return (
         <>
             <h2>Comments</h2>
@@ -10,6 +12,7 @@ function Comments({data, postId}) {
                     </div>
                 )}
             </div>
+
         </>
     )
 }

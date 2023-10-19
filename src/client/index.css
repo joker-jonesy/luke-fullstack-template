@@ -151,12 +151,11 @@ body {
 button {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 30px;
   min-width: 30px;
-  max-width: 100px;
+  max-width: 110px;
   box-sizing: border-box;
   padding: 8px 25px;
   border-radius: 30px;
@@ -277,7 +276,9 @@ section {
   color: white;
 }
 .createForm .tags .tag h3,
-.post .tags .tag h3 {
+.post .tags .tag h3,
+.createForm .tags .tag button,
+.post .tags .tag button {
   text-align: center;
 }
 .post {
@@ -419,6 +420,20 @@ section {
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (min-width: 750px) {
+  .post .createForm {
+    width: 100%;
+    margin: 0;
+    border: none;
+  }
+}
+@media screen and (min-width: 900px) {
+  .post .createForm {
+    width: 100%;
+    margin: 0;
+    border: none;
+  }
+}
 .createForm {
   width: 100%;
   flex-direction: column;
@@ -427,6 +442,9 @@ section {
   height: 250px;
   box-sizing: border-box;
   padding: 8px;
+}
+.createForm * {
+  margin: 8px 0;
 }
 @media screen and (min-width: 750px) {
   .createForm {
@@ -440,9 +458,6 @@ section {
   .createForm {
     width: 750px;
   }
-}
-.createForm * {
-  margin: 8px 0;
 }
 .createForm .tags .tag {
   cursor: pointer;
