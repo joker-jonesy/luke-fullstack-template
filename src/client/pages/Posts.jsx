@@ -25,9 +25,11 @@ function Posts() {
             ))
 
 
-    const searchEle =  (
+    const searchEle = (
         results.rslt.length === 0 || !results.rslt
-            ? <h1>No Results Found</h1>
+            ? <>
+                <h1>No Results Found</h1>
+            </>
             : results.rslt.map((i, idx) =>
                 <Post key={idx} data={i} delete={me.admin}/>
             ))
