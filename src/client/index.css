@@ -277,6 +277,29 @@ section {
 .fillOverlay .post {
   background: none;
 }
+::placeholder {
+  color: #cccccc;
+}
+.searchBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchBar button {
+  margin: 0 0 0 10px;
+}
+@media screen and (min-width: 750px) {
+  .searchBar {
+    width: 600px;
+    margin: 8px 0;
+  }
+}
+@media screen and (min-width: 900px) {
+  .searchBar {
+    width: 750px;
+  }
+}
 .createForm .tags,
 .post .tags {
   width: 100%;

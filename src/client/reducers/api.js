@@ -27,6 +27,13 @@ export const api = createApi({
         getPost: builder.query({
             query: (id)=> '/api/posts/'+id
         }),
+        searchPost: builder.mutation({
+            query:(body)=>({
+                url:'/api/search',
+                method:"POST",
+                body:body
+            })
+        }),
         getTags: builder.query({
             query: ()=> '/api/tags'
         }),
@@ -83,7 +90,10 @@ const dataSlice = createSlice({
         posts:[],
         tags:[],
         post:null,
-        result:[]
+        results: {
+            search:false,
+            rslt:[]
+        }
     },
     reducers:{},
     extraReducers: (builder)=>{
@@ -105,6 +115,16 @@ const dataSlice = createSlice({
             return{
                 ...state,
                 posts: payload
+            }
+        })
+
+        builder.addMatcher(api.endpoints.searchPost.matchFulfilled, (state, {payload})=>{
+            return{
+                ...state,
+                results: {
+                    search:true,
+                    rslt:payload
+                }
             }
         })
 
@@ -157,4 +177,4 @@ const dataSlice = createSlice({
 
 export default dataSlice.reducer;
 
-export const {useDeleteCommentMutation, useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;
+export const {useSearchPostMutation, useDeleteCommentMutation, useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;

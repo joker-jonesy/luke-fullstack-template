@@ -10,7 +10,7 @@ function Button(props) {
             {props.form ?
                 <input type={"submit"} className={"button " + props.theme} value={props.vl} onClick={clicker}/>
                 :
-                <button className={"button " + props.theme} onClick={clicker}>{props.vl}</button>
+                <button className={"button " + props.theme} onClick={clicker}>{props.vl||props.children}</button>
             }
         </>
 

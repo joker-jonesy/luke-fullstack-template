@@ -156,3 +156,27 @@ section{
     background: none;
   }
 }
+
+::placeholder {
+  color:@side;
+}
+
+.searchBar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button{
+    margin: 0 0 0 10px;
+  }
+
+  @media screen and (min-width: @tablet) {
+    width: @mb;
+    margin: 8px 0;
+  }
+
+  @media screen and (min-width: @desktop) {
+    width: @tablet;
+  }
+}

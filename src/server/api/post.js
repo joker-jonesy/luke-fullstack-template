@@ -29,7 +29,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const post = await prisma.post.findUnique({
+        const post = await prisma.post.findFirst({
             where: {
                 id: Number(req.params.id)
             },
@@ -53,6 +53,8 @@ router.get('/:id', async (req, res, next) => {
         next(err)
     }
 })
+
+
 
 router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
 

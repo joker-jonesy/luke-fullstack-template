@@ -5,7 +5,7 @@ function TextInput(props){
     }
 
     return(
-        <input placeholder={"..."} className={"textField"} value={props.vl} type={props.type} onChange={changed}/>
+        <input placeholder={props.placeholder||"..."} className={"textField"} value={props.vl} type={props.type} onChange={changed}/>
     )
 }
 
