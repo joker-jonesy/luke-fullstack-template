@@ -16,6 +16,7 @@ model user {
   admin    Boolean   @default(false)
   like     like[]
   comment  comment[]
+  vote     vote[]
 }
 
 model post {
@@ -53,6 +54,15 @@ model like {
   type   String
 }
 
+model vote {
+  id        Int     @id @default(autoincrement())
+  comment   comment @relation(fields: [commentId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  commentId Int
+  user      user?   @relation(fields: [userId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  userId    Int?
+  type      String
+}
+
 model comment {
   id        Int      @id @default(autoincrement())
   author    user?    @relation(fields: [authorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
@@ -61,4 +71,5 @@ model comment {
   postId    Int?
   text      String
   createdAt DateTime @default(now())
+  vote      vote[]
 }

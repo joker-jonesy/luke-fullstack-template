@@ -55,7 +55,8 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
                 like: true,
                 comment: {
                     include:{
-                        author:true
+                        author:true,
+                        vote:true
                     }
                 }
             }

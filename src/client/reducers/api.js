@@ -59,6 +59,13 @@ export const api = createApi({
                 body:body
             })
         }),
+        voteComment : builder.mutation({
+            query:(body)=>({
+                url:'/api/votes',
+                method:"POST",
+                body:body
+            })
+        }),
         addComment : builder.mutation({
             query:(body)=>({
                 url:'/api/comments',
@@ -177,6 +184,13 @@ const dataSlice = createSlice({
             }
         })
 
+        builder.addMatcher(api.endpoints.voteComment.matchFulfilled, (state, {payload})=>{
+            return {
+                ...state,
+                posts: state.posts.map(i=>i.id===payload.id?{...i, ...payload}:i)
+            }
+        })
+
 
     }
 })
@@ -184,4 +198,4 @@ const dataSlice = createSlice({
 export default dataSlice.reducer;
 export const {clearSearch} = dataSlice.actions;
 
-export const {useSearchPostQuery, useDeleteCommentMutation, useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;
+export const {useVoteCommentMutation, useDeleteCommentMutation, useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;

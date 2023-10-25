@@ -38,7 +38,7 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route index element={<Posts/>}/>
+                <Route path={"/"} element={<Posts/>}/>
                 <Route path={"/register"} element={<AuthForm/>}/>
                 <Route path={"/user"} element={<User/>}/>
                 <Route path={"/post/:id"} element={<Post/>}/>

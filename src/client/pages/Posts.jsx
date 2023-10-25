@@ -1,8 +1,9 @@
-import {useGetPostsQuery} from "../reducers/api";
+import { useGetPostsQuery} from "../reducers/api";
 import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import Post from "../components/Post";
 import SearchBar from "../components/SearchBar";
+
 
 function Posts() {
 
@@ -10,7 +11,6 @@ function Posts() {
     const posts = useSelector(state => state.data.posts);
     const results = useSelector(state => state.data.results);
     const me = useSelector(state => state.auth.credentials.user);
-
     const [load, setLoad] = useState(true)
 
     useEffect(() => {

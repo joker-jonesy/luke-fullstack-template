@@ -124,14 +124,47 @@
     margin-bottom: 8px;
     position: relative;
 
+    h3{
+      pointer-events: none;
+    }
+
     .delete {
       position: absolute;
-      top: 25px;
-      right: 25px;
+      top: 15px;
+      right: 15px;
       color: @warn;
       cursor: pointer;
     }
+    .votes{
+      .flexInit();
+      justify-content: flex-end;
+      width: 100%;
 
+      .vote{
+        margin: 0 10px;
+        cursor: pointer;
+        min-width: 30px;
+        display: flex;
+        height: 30px;
+        justify-content: space-between;
+        align-items: center;
+
+        *{
+          margin: 0 5px;
+        }
+        .pad(4px);
+        .rounded();
+
+      }
+    }
+
+
+  }
+}
+
+.vote.log{
+  &:hover{
+    background-color: @minor;
   }
 }
 

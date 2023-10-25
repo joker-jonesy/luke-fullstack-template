@@ -444,12 +444,39 @@ section {
 .comments .comment a {
   color: white;
 }
+.comments .comment h3 {
+  pointer-events: none;
+}
 .comments .comment .delete {
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 15px;
+  right: 15px;
   color: red;
   cursor: pointer;
+}
+.comments .comment .votes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+.comments .comment .votes .vote {
+  margin: 0 10px;
+  cursor: pointer;
+  min-width: 30px;
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 4px;
+  border-radius: 8px;
+}
+.comments .comment .votes .vote * {
+  margin: 0 5px;
+}
+.vote.log:hover {
+  background-color: #9b9b9b;
 }
 .likes {
   position: absolute;

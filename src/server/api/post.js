@@ -16,7 +16,8 @@ router.get('/', async (req, res, next) => {
                 like: true,
                 comment: {
                     include:{
-                        author:true
+                        author:true,
+                        vote:true
                     }
                 }
             }
@@ -43,7 +44,8 @@ router.get('/:id', async (req, res, next) => {
                 like: true,
                 comment: {
                     include:{
-                        author:true
+                        author:true,
+                        vote:true
                     }
                 }
             }
