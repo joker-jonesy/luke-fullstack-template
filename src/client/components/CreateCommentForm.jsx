@@ -1,6 +1,6 @@
 import {useState} from "react";
 import TextInput from "./inputs/TextInput";
-import {useAddCommentMutation} from "../reducers/api";
+import {useAddCommentMutation} from "../reducers/comments";
 import Button from "./inputs/Button";
 import {useSelector} from "react-redux";
 function CreateCommentForm(props){

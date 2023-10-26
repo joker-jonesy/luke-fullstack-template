@@ -66,6 +66,8 @@ router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
                 id: Number(req.params.id)
             }
         });
+
+
         res.send(post)
     } catch (err) {
         next(err)

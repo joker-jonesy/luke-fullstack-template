@@ -21,69 +21,10 @@ export const api = createApi({
         },
     }),
     endpoints: (builder) => ({
-        getPosts: builder.query({
-            query: ()=> '/api/posts',
-        }),
-        getPost: builder.query({
-            query: (id)=> '/api/posts/'+id
-        }),
-        searchPost: builder.query({
-            query: (search)=>'/api/search/'+search
-        }),
+
         getTags: builder.query({
             query: ()=> '/api/tags'
         }),
-        deletePost:builder.mutation({
-            query:(id)=>({
-                url:'/api/posts/'+id,
-                method:'DELETE'
-            })
-        }),
-        deleteComment:builder.mutation({
-            query:(id)=>({
-                url:'/api/comments/'+id,
-                method:'DELETE'
-            })
-        }),
-        addPost: builder.mutation({
-            query:(body)=>({
-                url:'/api/posts',
-                method:"POST",
-                body:body
-            })
-        }),
-        likePost : builder.mutation({
-            query:(body)=>({
-                url:'/api/likes',
-                method:"POST",
-                body:body
-            })
-        }),
-        voteComment : builder.mutation({
-            query:(body)=>({
-                url:'/api/votes',
-                method:"POST",
-                body:body
-            })
-        }),
-        addComment : builder.mutation({
-            query:(body)=>({
-                url:'/api/comments',
-                method:"POST",
-                body:body
-            })
-        }),
-        editPost: builder.mutation({
-            query(data){
-                const {id, ...body}=data;
-                return {
-                    url: '/api/posts/'+id,
-                    method:"PUT",
-                    body
-                }
-            }
-        }),
-
     }),
 });
 
@@ -198,4 +139,4 @@ const dataSlice = createSlice({
 export default dataSlice.reducer;
 export const {clearSearch} = dataSlice.actions;
 
-export const {useVoteCommentMutation, useDeleteCommentMutation, useAddCommentMutation, useLikePostMutation, useGetUserPostsQuery, useAddPostMutation, useGetPostQuery, useDeletePostMutation, useGetPostsQuery, useGetTagsQuery, useEditPostMutation} = api;
+export const {useGetTagsQuery} = api;

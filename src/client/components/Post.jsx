@@ -1,4 +1,5 @@
-import {useDeletePostMutation, useEditPostMutation, useGetTagsQuery} from "../reducers/api";
+import {useGetTagsQuery} from "../reducers/api";
+import {useDeletePostMutation, useEditPostMutation} from "../reducers/posts";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faWrench, faTrash, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Tags from "./Tags";

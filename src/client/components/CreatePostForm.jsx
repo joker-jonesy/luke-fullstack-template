@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
-import {useAddPostMutation, useGetPostsQuery, useGetTagsQuery} from "../reducers/api";
+import {useAddPostMutation} from "../reducers/posts";
+import {useGetTagsQuery} from "../reducers/api";
 import Button from "./inputs/Button";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

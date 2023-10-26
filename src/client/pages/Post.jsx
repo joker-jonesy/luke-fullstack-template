@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
-import {useGetPostQuery} from "../reducers/api";
+import {useGetPostQuery} from "../reducers/posts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSpinner, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Tags from "../components/Tags";
 import Likes from "../components/Likes";
 import Comments from "../components/Comments";
