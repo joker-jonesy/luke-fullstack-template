@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
-import {useAddPostMutation} from "../reducers/posts";
-import {useGetTagsQuery} from "../reducers/api";
+import {useAddPostMutation} from "../redux/api/posts";
+import {useGetTagsQuery} from "../redux/api/api";
 import Button from "./inputs/Button";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

@@ -2,7 +2,7 @@ import Button from "./inputs/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faThumbsUp, faThumbsDown} from "@fortawesome/free-solid-svg-icons";
 import {useSelector} from "react-redux";
-import {useLikePostMutation} from "../reducers/posts";
+import {useLikePostMutation} from "../redux/api/posts";
 
 function Likes ({data, postId}){
     const me = useSelector(state=>state.auth.credentials.user);

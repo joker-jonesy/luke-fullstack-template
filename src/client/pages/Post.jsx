@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import {useGetPostQuery} from "../reducers/posts";
+import {useGetPostQuery} from "../redux/api/posts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Tags from "../components/Tags";

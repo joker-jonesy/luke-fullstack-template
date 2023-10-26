@@ -1,4 +1,4 @@
-import {useGetPostsQuery} from "../reducers/posts";
+import {useGetPostsQuery} from "../redux/api/posts";
 import {useEffect, useState} from "react";
 import { useSelector} from "react-redux";
 import Post from "../components/Post";

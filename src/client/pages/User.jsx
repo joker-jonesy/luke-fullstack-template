@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {useDeletePostMutation, useAddPostMutation, useGetPostsQuery} from "../reducers/posts";
+import {useDeletePostMutation, useAddPostMutation, useGetPostsQuery} from "../redux/api/posts";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CreatePostForm from "../components/CreatePostForm";

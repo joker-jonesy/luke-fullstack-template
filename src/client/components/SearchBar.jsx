@@ -2,7 +2,8 @@ import TextInput from "./inputs/TextInput";
 import Button from "./inputs/Button";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {api, clearSearch} from "../reducers/api";
+import {api} from "../redux/api/api";
+import {clearSearch} from "../redux/slices/dataSlice";
 
 function SearchBar() {
 

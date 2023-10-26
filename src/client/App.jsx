@@ -5,7 +5,7 @@ import Posts from "./pages/Posts";
 import User from "./pages/User";
 import Post from "./pages/Post";
 import { socket } from './socket';
-import {setIsConnected, setFooEvents} from "./reducers/socket";
+import {setIsConnected, setFooEvents} from "./redux/socket";
 
 function App() {
 

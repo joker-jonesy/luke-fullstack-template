@@ -1,4 +1,4 @@
-import { useLogoutMutation } from "../../reducers/auth";
+import { useLogoutMutation } from "../../redux/api/auth";
 
 function LogoutButton() {
   const [logout] = useLogoutMutation();

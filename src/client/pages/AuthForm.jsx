@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useLoginMutation, useRegisterMutation} from "../reducers/auth";
+import {useLoginMutation, useRegisterMutation} from "../redux/api/auth";
 import {useNavigate} from "react-router-dom";
 
 /**
