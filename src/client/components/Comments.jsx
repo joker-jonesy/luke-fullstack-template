@@ -26,6 +26,7 @@ function Comments({data, edit}) {
                 {popularComments.map((i) =>
                     <Comment key={i.id} edit={edit} commentId={i.id} data={i}/>
                 )}
+                {popularComments.length===0&& <h2>No Comments on This Post</h2>}
             </div>
 
         </>

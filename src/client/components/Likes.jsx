@@ -8,7 +8,7 @@ function Likes ({data, postId}){
     const me = useSelector(state=>state.auth.credentials.user);
     const likes = data.filter(i=>i.type==="like").length;
     const dislikes = data.filter(i=>i.type==="dislike").length;
-    const [likePost] = useLikePostMutation();
+    const [likePost, {isLoading}] = useLikePostMutation();
 
     const onSubmit = async(type)=>{
         await likePost({

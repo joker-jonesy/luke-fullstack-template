@@ -72,6 +72,7 @@ const dataSlice = createSlice({
         builder.addMatcher(api.endpoints.likePost.matchFulfilled, (state, {payload})=>{
             return {
                 ...state,
+                post: payload,
                 posts: state.posts.map(i=>i.id===payload.id?{...i, ...payload}:i)
             }
         })
@@ -102,6 +103,7 @@ const dataSlice = createSlice({
         builder.addMatcher(api.endpoints.voteComment.matchFulfilled, (state, {payload})=>{
             return {
                 ...state,
+                post: payload,
                 posts: state.posts.map(i=>i.id===payload.id?{...i, ...payload}:i)
             }
         })

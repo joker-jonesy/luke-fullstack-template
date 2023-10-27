@@ -18,8 +18,8 @@ function Post(props) {
 
     const [edit, setEdit] = useState(false);
     const [text, setText] = useState(props.data.text)
-    const [deletePost] = useDeletePostMutation();
-    const [editPost] = useEditPostMutation();
+    const [deletePost, {isLoading:deleting}] = useDeletePostMutation();
+    const [editPost, {isLoading:editing}] = useEditPostMutation();
     const {data, isLoading} = useGetTagsQuery();
     const [tags, setTags] = useState([]);
     const [toggle,setToggle]=useState(false);
@@ -91,6 +91,7 @@ function Post(props) {
                 !edit ?<>
 
                     <div className={"post"}>
+                        {deleting||editing&&<FontAwesomeIcon className={"load"} icon={faSpinner} size="2x" spin/>}
 
                         <div className={"info"}>
                             <h1>{props.data.author.username}</h1>

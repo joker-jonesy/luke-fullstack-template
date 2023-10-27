@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {notify} from "../redux/slices/notificationSlice";
 function CreatePostForm(props){
     const {me} = props;
-    const [addPost]= useAddPostMutation();
+    const [addPost, {isLoading: sendPost}]= useAddPostMutation();
     const {data, isLoading}= useGetTagsQuery();
     const notLength = useSelector(state=>state.length)
 
@@ -67,6 +67,7 @@ function CreatePostForm(props){
 
     return(
         <div className={"createForm"}>
+            {sendPost&&<FontAwesomeIcon className={"load"} icon={faSpinner} spin/>}
             <h1>Create a Post</h1>
             <TextInput type={"text"} vl={text} chg={setText}/>
             <h3>Add Tags</h3>

@@ -4,10 +4,12 @@ import {useAddCommentMutation} from "../redux/api/comments";
 import Button from "./inputs/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {notify} from "../redux/slices/notificationSlice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 function CreateCommentForm(props){
     const {postId} = props;
     const me = useSelector(state=>state.auth.credentials.user);
-    const [addComment]=useAddCommentMutation();
+    const [addComment, {isLoading}]=useAddCommentMutation();
     const dispatch = useDispatch()
     const notLength = useSelector(state=>state.length)
 
@@ -42,6 +44,7 @@ function CreateCommentForm(props){
 
     return(
         <div className={"createForm"}>
+            {isLoading&&<FontAwesomeIcon className={"load"} icon={faSpinner} spin/>}
             <h1>Create a Comment</h1>
             <TextInput type={"text"} vl={text} chg={setText}/>
             <Button click={onSubmit} vl={"COMMENT"} theme={"submit"}/>

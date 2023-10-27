@@ -1,13 +1,13 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowUp, faArrowDown, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faArrowUp, faArrowDown, faTrash, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {useDeleteCommentMutation, useVoteCommentMutation} from "../redux/api/comments";
 import {useDispatch, useSelector} from "react-redux";
 import {notify} from "../redux/slices/notificationSlice";
 
 function Comment(props) {
 
-    const [deleteComment] = useDeleteCommentMutation();
-    const [voteComment] = useVoteCommentMutation();
+    const [deleteComment, {isLoading:deleting}] = useDeleteCommentMutation();
+    const [voteComment, {isLoading:voting}] = useVoteCommentMutation();
     const me = useSelector(state => state.auth.credentials.user);
     const dispatch = useDispatch()
     const notLength = useSelector(state=>state.length)
@@ -50,6 +50,7 @@ function Comment(props) {
 
     return (
         <div key={props.data.id} className="comment">
+            {deleting||voting&&<FontAwesomeIcon className={"load"} icon={faSpinner} spin/>}
             <h3>{props.data.author.username}</h3>
             <p>{props.data.text}</p>
             {props.edit && <FontAwesomeIcon className={"delete"} icon={faTrash} onClick={onDelete}/>}

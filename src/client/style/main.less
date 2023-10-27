@@ -98,6 +98,7 @@ section{
 .form{
   width: 100%;
   .pad(16px);
+  position: relative;
 
   *{
     margin: 10px 0;
@@ -177,5 +178,32 @@ section{
 
   @media screen and (min-width: @desktop) {
     width: @tablet;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.createForm{
+  position: relative;
+  .load{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color:@f1;
   }
 }

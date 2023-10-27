@@ -28,6 +28,13 @@
 
 .post {
 
+  .load{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color:@f1;
+  }
+
   a{
     text-decoration: underline;
   }
@@ -68,12 +75,14 @@
     top: 25px;
     right: 25px;
     color: @warn;
+    cursor: pointer;
   }
 
   .edit {
     position: absolute;
     top: 25px;
     right: 75px;
+    cursor: pointer;
   }
 
   .info {
@@ -118,6 +127,14 @@
   .comment {
     .rounded();
     .tint();
+
+    .load{
+      position: absolute;
+      top: 15px;
+      right: 40px;
+      color:@f3;
+    }
+
     width: 100%;
     min-height: 50px;
     .pad(4px);
@@ -183,7 +200,12 @@
     .flexAroundRow();
 
     .chose {
-      border: solid 2px gold;
+      background-color: gold;
+      color: @f1;
+    }
+
+    .loadingBorder{
+      animation: pulse 2s infinite;
     }
 
     div {

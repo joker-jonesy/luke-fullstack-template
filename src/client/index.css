@@ -222,6 +222,7 @@ section {
   width: 100%;
   box-sizing: border-box;
   padding: 16px;
+  position: relative;
 }
 .form * {
   margin: 10px 0;
@@ -299,6 +300,29 @@ section {
     width: 750px;
   }
 }
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+.createForm {
+  position: relative;
+}
+.createForm .load {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #000000;
+}
 .createForm .tags,
 .post .tags {
   width: 100%;
@@ -351,6 +375,12 @@ section {
   padding: 8px 16px 45px 16px;
   position: relative;
 }
+.post .load {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000000;
+}
 .post a {
   text-decoration: underline;
 }
@@ -387,11 +417,13 @@ section {
   top: 25px;
   right: 25px;
   color: red;
+  cursor: pointer;
 }
 .post .edit {
   position: absolute;
   top: 25px;
   right: 75px;
+  cursor: pointer;
 }
 .post .info {
   min-height: 100px;
@@ -442,6 +474,12 @@ section {
   position: relative;
 }
 .comments .comment a {
+  color: white;
+}
+.comments .comment .load {
+  position: absolute;
+  top: 15px;
+  right: 40px;
   color: white;
 }
 .comments .comment h3 {
@@ -499,7 +537,11 @@ section {
   align-items: center;
 }
 .likes .slot .chose {
-  border: solid 2px gold;
+  background-color: gold;
+  color: #000000;
+}
+.likes .slot .loadingBorder {
+  animation: pulse 2s infinite;
 }
 .likes .slot div {
   display: flex;
@@ -588,7 +630,7 @@ section {
   height: 100vh;
   pointer-events: none;
   right: 0;
-  z-index: 99;
+  z-index: 110;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;

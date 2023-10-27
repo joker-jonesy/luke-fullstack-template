@@ -49,6 +49,7 @@ function User (){
     return (
         <>
             <section>
+                <h1>Welcome {me.username}!</h1>
             <CreatePostForm me={me}/>
             {load? <h1>Loading...</h1>: posts.filter(i=>  i.authorId === me.userId).length===0? <h1>User has not created any posts</h1>:posts.filter(i=>  i.authorId === me.userId).map((i)=>
                 <Post key={i.id} data={i} delete={true}/>
