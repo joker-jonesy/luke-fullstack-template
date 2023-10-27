@@ -5,15 +5,19 @@ import {useGetTagsQuery} from "../redux/api/api";
 import Button from "./inputs/Button";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useDispatch, useSelector} from "react-redux";
+import {notify} from "../redux/slices/notificationSlice";
 function CreatePostForm(props){
     const {me} = props;
     const [addPost]= useAddPostMutation();
     const {data, isLoading}= useGetTagsQuery();
+    const notLength = useSelector(state=>state.length)
 
     const [text, setText]=useState("");
     const [error, setError]=useState("");
     const [tags,setTags]= useState([]);
     const [change, setChange]= useState(false)
+    const dispatch = useDispatch()
 
     const toggleTag = (tag)=>{
         const newTags =tags;
@@ -42,6 +46,12 @@ function CreatePostForm(props){
                 console.log("added");
                 setText("");
                 setTags([]);
+                dispatch(notify({
+                    id: notLength,
+                    type:"success",
+                    text:"Post Created!",
+                    active:true
+                }))
             }).catch(()=>{
                 console.log("error")
             })

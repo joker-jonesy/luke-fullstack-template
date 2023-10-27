@@ -1,0 +1,62 @@
+.notifications{
+  position: fixed;
+  top: @navHeightMobile;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  right: 0;
+  z-index: 99;
+  .flexInit();
+  .flexStartColumn();
+  align-items: flex-end;
+  .pad(8px);
+
+  @media screen and (min-width: @mb) {
+    top: @navHeight;
+    width: @mb;
+  }
+
+  .notification{
+    .flexInit();
+    .flexCenterColumn();
+    height: @navHeight;
+    .rounded();
+    .pad(8px);
+    width: 50%;
+    background-color: @main;
+    color: @f3;
+    margin-top: 16px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeOut 1.5s ease-in-out;
+    animation-delay: 1.5s;
+
+    opacity: 1;
+
+    .success{
+      color: @good;
+    }
+
+    .fail{
+      color: @warn;
+    }
+
+    .alert{
+      color: @alert;
+    }
+
+    h3{
+
+    }
+
+    @media screen and (min-width: @mb) {
+      height: @navHeightMobile;
+    }
+
+  }
+
+}
+
+@keyframes fadeOut {
+  from {opacity: 1}
+  to {opacity: 0}
+}

@@ -7,11 +7,13 @@ import {BrowserRouter} from "react-router-dom";
 import store from "./store";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Notifications from "./components/Notifications";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
+                <Notifications/>
                 <Nav/>
                 <App/>
                 <Footer/>
