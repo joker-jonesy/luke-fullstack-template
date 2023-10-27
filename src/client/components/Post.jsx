@@ -8,9 +8,10 @@ import {useEffect, useState} from "react";
 import TextInput from "./inputs/TextInput";
 import Likes from "./Likes";
 import Comments from "./Comments";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Overlay from "./Overlay";
 import CreateCommentForm from "./CreateCommentForm";
+import {notify} from "../redux/slices/notificationSlice";
 
 function Post(props) {
     const me = useSelector(state=>state.auth.credentials.user);
@@ -23,11 +24,25 @@ function Post(props) {
     const [tags, setTags] = useState([]);
     const [toggle,setToggle]=useState(false);
     const [change, setChange] = useState(false)
+    const dispatch = useDispatch()
+    const notLength = useSelector(state=>state.length)
     const onDelete = async (e) => {
         e.preventDefault();
         await deletePost(props.data.id).then(() => {
+        }).then(()=>{
+            dispatch(notify({
+                id: notLength,
+                type:"success",
+                text:"Post Deleted!",
+                active:true
+            }))
         }).catch(() => {
-            console.log("error")
+            dispatch(notify({
+                id: notLength,
+                type:"fail",
+                text:"Error deleting",
+                active:true
+            }))
         })
     }
 

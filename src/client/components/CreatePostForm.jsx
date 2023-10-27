@@ -43,7 +43,6 @@ function CreatePostForm(props){
                 authorId: me.userId,
                 tags: tags
             }).then(()=>{
-                console.log("added");
                 setText("");
                 setTags([]);
                 dispatch(notify({
@@ -53,7 +52,12 @@ function CreatePostForm(props){
                     active:true
                 }))
             }).catch(()=>{
-                console.log("error")
+                dispatch(notify({
+                    id: notLength,
+                    type:"fail",
+                    text:"Error posting",
+                    active:true
+                }))
             })
         } else{
             setError("Not enough characters to submit post")

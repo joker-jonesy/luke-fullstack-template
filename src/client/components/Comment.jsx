@@ -1,19 +1,32 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp, faArrowDown, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useDeleteCommentMutation, useVoteCommentMutation} from "../redux/api/comments";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {notify} from "../redux/slices/notificationSlice";
 
 function Comment(props) {
 
     const [deleteComment] = useDeleteCommentMutation();
     const [voteComment] = useVoteCommentMutation();
     const me = useSelector(state => state.auth.credentials.user);
+    const dispatch = useDispatch()
+    const notLength = useSelector(state=>state.length)
 
     const onDelete = async () => {
-        await deleteComment(props.data.id).then(() => {
-            console.log("deleted")
+        await deleteComment(props.data.id).then(()=>{
+            dispatch(notify({
+                id: notLength,
+                type:"success",
+                text:"Comment Deleted!",
+                active:true
+            }))
         }).catch(() => {
-            console.log("error")
+            dispatch(notify({
+                id: notLength,
+                type:"fail",
+                text:"Error deleting",
+                active:true
+            }))
         })
     }
 

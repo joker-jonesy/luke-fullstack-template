@@ -2,11 +2,14 @@ import {useState} from "react";
 import TextInput from "./inputs/TextInput";
 import {useAddCommentMutation} from "../redux/api/comments";
 import Button from "./inputs/Button";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {notify} from "../redux/slices/notificationSlice";
 function CreateCommentForm(props){
     const {postId} = props;
     const me = useSelector(state=>state.auth.credentials.user);
     const [addComment]=useAddCommentMutation();
+    const dispatch = useDispatch()
+    const notLength = useSelector(state=>state.length)
 
     const [text, setText]=useState("");
 
@@ -17,10 +20,21 @@ function CreateCommentForm(props){
                 authorId: Number(me.userId),
                 postId: postId
             }).then(()=>{
-                console.log("added");
+
                 setText("");
+                dispatch(notify({
+                    id: notLength,
+                    type:"success",
+                    text:"Post Created!",
+                    active:true
+                }))
             }).catch(()=>{
-                console.log("error")
+                dispatch(notify({
+                    id: notLength,
+                    type:"fail",
+                    text:"Error posting",
+                    active:true
+                }))
             })
         }
 
