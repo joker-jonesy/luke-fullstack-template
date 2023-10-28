@@ -5,33 +5,46 @@ import Posts from "./pages/Posts";
 import User from "./pages/User";
 import Post from "./pages/Post";
 import { socket } from './socket';
-import {setIsConnected, setFooEvents} from "./redux/socket";
+import {setIsConnected,setEvents} from "./redux/socket";
 import {useSelector} from "react-redux";
 
 function App() {
 
-
-    const sockets = useSelector(state=>state.sockets);
+    const socketEvents = useSelector(state=>state.sockets.events);
 
 
     useEffect(() => {
         socket.connect();
         function onConnect() {
             setIsConnected(true);
+            console.log("connected")
         }
 
         function onDisconnect() {
             setIsConnected(false);
+            console.log("disconnected")
         }
 
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);
 
         return () => {
-            socket.off('connect', onConnect);
             socket.off('disconnect', onDisconnect);
         };
-    }, [sockets.events]);
+    }, []);
+
+    useEffect(() => {
+        function onEvent(value) {
+            setEvents(socketEvents.concat(value));
+            console.log("event trigger");
+        }
+
+        socket.on('foo', onEvent);
+
+        return () => {
+            socket.off('foo', onEvent);
+        };
+    }, [socketEvents]);
 
     return (
         <div className="App">

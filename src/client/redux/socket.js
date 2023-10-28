@@ -14,7 +14,7 @@ const socketSlice = createSlice({
                 isConnected: payload
             }
         },
-        setFooEvents(state, {payload}){
+        setEvents(state, {payload}){
             return{
                 ...state,
                 events: previous => [...previous, payload]
@@ -23,6 +23,6 @@ const socketSlice = createSlice({
     },
 })
 
-export const {setIsConnected, setFooEvents}= socketSlice.actions;
+export const {setIsConnected, setEvents}= socketSlice.actions;
 
 export default socketSlice.reducer;
