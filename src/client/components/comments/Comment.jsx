@@ -1,8 +1,8 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUp, faArrowDown, faTrash, faSpinner} from "@fortawesome/free-solid-svg-icons";
-import {useDeleteCommentMutation, useVoteCommentMutation} from "../redux/api/comments";
+import {useDeleteCommentMutation, useVoteCommentMutation} from "../../redux/api/comments";
 import {useDispatch, useSelector} from "react-redux";
-import {notify} from "../redux/slices/notificationSlice";
+import {notify} from "../../redux/slices/notificationSlice";
 
 function Comment(props) {
 

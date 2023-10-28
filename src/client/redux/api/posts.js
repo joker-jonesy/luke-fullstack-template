@@ -44,6 +44,7 @@ const postApi = api.injectEndpoints({
 })
 
 export const {
+    useSearchPostQuery,
     useLikePostMutation,
     useGetUserPostsQuery,
     useAddPostMutation,

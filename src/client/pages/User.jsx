@@ -2,8 +2,8 @@ import {useSelector} from "react-redux";
 import {useDeletePostMutation, useAddPostMutation, useGetPostsQuery} from "../redux/api/posts";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import CreatePostForm from "../components/CreatePostForm";
-import Post from "../components/Post";
+import CreatePostForm from "../components/posts/CreatePostForm";
+import Post from "../components/posts/Post";
 
 function User (){
     const me = useSelector(state=>state.auth.credentials.user);

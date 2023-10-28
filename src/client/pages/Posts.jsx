@@ -1,8 +1,8 @@
 import {useGetPostsQuery} from "../redux/api/posts";
 import {useEffect, useState} from "react";
 import { useSelector} from "react-redux";
-import Post from "../components/Post";
-import SearchBar from "../components/SearchBar";
+import Post from "../components/posts/Post";
+import SearchBar from "../components/inputs/SearchBar";
 
 
 function Posts() {

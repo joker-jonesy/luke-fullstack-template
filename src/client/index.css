@@ -148,6 +148,9 @@ body {
     padding-top: 60px;
   }
 }
+.searchLoad {
+  margin-top: 10px;
+}
 button {
   display: flex;
   flex-wrap: wrap;

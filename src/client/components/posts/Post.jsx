@@ -1,17 +1,17 @@
-import {useGetTagsQuery} from "../redux/api/api";
-import {useDeletePostMutation, useEditPostMutation} from "../redux/api/posts";
+import {useGetTagsQuery} from "../../redux/api/api";
+import {useDeletePostMutation, useEditPostMutation} from "../../redux/api/posts";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faWrench, faTrash, faSpinner} from "@fortawesome/free-solid-svg-icons";
-import Tags from "./Tags";
+import Tags from "../tags/Tags";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import TextInput from "./inputs/TextInput";
-import Likes from "./Likes";
-import Comments from "./Comments";
+import TextInput from "../inputs/TextInput";
+import Likes from "../likes/Likes";
+import Comments from "../comments/Comments";
 import {useDispatch, useSelector} from "react-redux";
-import Overlay from "./Overlay";
-import CreateCommentForm from "./CreateCommentForm";
-import {notify} from "../redux/slices/notificationSlice";
+import Overlay from "../uniqueComponents/Overlay";
+import CreateCommentForm from "../comments/CreateCommentForm";
+import {notify} from "../../redux/slices/notificationSlice";
 
 function Post(props) {
     const me = useSelector(state=>state.auth.credentials.user);

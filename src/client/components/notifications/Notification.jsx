@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {removeNotify} from "../redux/slices/notificationSlice";
+import {removeNotify} from "../../redux/slices/notificationSlice";
 
 function Notification(props) {
 

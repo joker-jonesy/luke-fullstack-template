@@ -1,9 +1,9 @@
 import {useState} from "react";
-import TextInput from "./inputs/TextInput";
-import {useAddCommentMutation} from "../redux/api/comments";
-import Button from "./inputs/Button";
+import TextInput from "../inputs/TextInput";
+import {useAddCommentMutation} from "../../redux/api/comments";
+import Button from "../inputs/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {notify} from "../redux/slices/notificationSlice";
+import {notify} from "../../redux/slices/notificationSlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 function CreateCommentForm(props){
@@ -11,7 +11,7 @@ function CreateCommentForm(props){
     const me = useSelector(state=>state.auth.credentials.user);
     const [addComment, {isLoading}]=useAddCommentMutation();
     const dispatch = useDispatch()
-    const notLength = useSelector(state=>state.length)
+    const notLength = useSelector(state=>state.notifications.length)
 
     const [text, setText]=useState("");
 

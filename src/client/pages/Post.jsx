@@ -2,10 +2,10 @@ import {useParams} from "react-router-dom";
 import {useGetPostQuery} from "../redux/api/posts";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
-import Tags from "../components/Tags";
-import Likes from "../components/Likes";
-import Comments from "../components/Comments";
-import CreateCommentForm from "../components/CreateCommentForm";
+import Tags from "../components/tags/Tags";
+import Likes from "../components/likes/Likes";
+import Comments from "../components/comments/Comments";
+import CreateCommentForm from "../components/comments/CreateCommentForm";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 

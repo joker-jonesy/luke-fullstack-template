@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useLogoutMutation} from "../redux/api/auth";
+import {useLogoutMutation} from "../../redux/api/auth";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {useSelector} from "react-redux";
-import logo from '../../../public/vite.svg'
+import logo from '../../../../public/vite.svg'
 
 function Nav(){
 

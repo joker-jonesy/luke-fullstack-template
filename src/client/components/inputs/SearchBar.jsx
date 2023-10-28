@@ -1,16 +1,19 @@
-import TextInput from "./inputs/TextInput";
-import Button from "./inputs/Button";
+import TextInput from "./TextInput";
+import Button from "./Button";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {api} from "../redux/api/api";
-import {clearSearch} from "../redux/slices/dataSlice";
+import {api} from "../../redux/api/api";
+import {clearSearch} from "../../redux/slices/dataSlice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 function SearchBar() {
 
     const [text, setText] = useState("");
     const results = useSelector(state=>state.data.results);
     const dispatch= useDispatch();
-    const [trigger]=api.endpoints.searchPost.useLazyQuery();
+
+    const [trigger, {isLoading}]=api.endpoints.searchPost.useLazyQuery();
 
     const onSubmit = async () => {
         try {
@@ -24,6 +27,7 @@ function SearchBar() {
 
     return (
         <>
+            {isLoading&&<FontAwesomeIcon className={"searchLoad"} icon={faSpinner} size={"2x"} spin/>}
             <div className="searchBar">
                 <TextInput placeholder={"Search.."} type={"text"} vl={text} chg={setText}/>
                 <Button click={onSubmit} theme={"submit"}>SEARCH</Button>

@@ -1,17 +1,17 @@
 import {useEffect, useState} from "react";
-import TextInput from "./inputs/TextInput";
-import {useAddPostMutation} from "../redux/api/posts";
-import {useGetTagsQuery} from "../redux/api/api";
-import Button from "./inputs/Button";
+import TextInput from "../inputs/TextInput";
+import {useAddPostMutation} from "../../redux/api/posts";
+import {useGetTagsQuery} from "../../redux/api/api";
+import Button from "../inputs/Button";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useDispatch, useSelector} from "react-redux";
-import {notify} from "../redux/slices/notificationSlice";
+import {notify} from "../../redux/slices/notificationSlice";
 function CreatePostForm(props){
     const {me} = props;
     const [addPost, {isLoading: sendPost}]= useAddPostMutation();
     const {data, isLoading}= useGetTagsQuery();
-    const notLength = useSelector(state=>state.length)
+    const notLength = useSelector(state=>state.notifications.length)
 
     const [text, setText]=useState("");
     const [error, setError]=useState("");
