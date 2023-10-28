@@ -6,8 +6,12 @@ import User from "./pages/User";
 import Post from "./pages/Post";
 import { socket } from './socket';
 import {setIsConnected, setFooEvents} from "./redux/socket";
+import {useSelector} from "react-redux";
 
 function App() {
+
+
+    const sockets = useSelector(state=>state.sockets);
 
 
     useEffect(() => {
@@ -20,20 +24,14 @@ function App() {
             setIsConnected(false);
         }
 
-        function onFooEvent(value) {
-            setFooEvents(value);
-        }
-
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);
-        socket.on('foo', onFooEvent);
 
         return () => {
             socket.off('connect', onConnect);
             socket.off('disconnect', onDisconnect);
-            socket.off('foo', onFooEvent);
         };
-    }, []);
+    }, [sockets.events]);
 
     return (
         <div className="App">

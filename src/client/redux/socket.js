@@ -5,7 +5,7 @@ const socketSlice = createSlice({
     name: "socket",
     initialState: {
         isConnected: socket.connected,
-        fooEvents: []
+        events: []
     },
     reducers: {
         setIsConnected(state, {payload}){
@@ -17,7 +17,7 @@ const socketSlice = createSlice({
         setFooEvents(state, {payload}){
             return{
                 ...state,
-                fooEvents: previous => [...previous, payload]
+                events: previous => [...previous, payload]
             }
         }
     },
