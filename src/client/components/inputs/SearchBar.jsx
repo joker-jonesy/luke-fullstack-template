@@ -6,11 +6,13 @@ import {api} from "../../redux/api/api";
 import {clearSearch} from "../../redux/slices/dataSlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {notify} from "../../redux/slices/notificationSlice";
 
 function SearchBar() {
 
     const [text, setText] = useState("");
     const results = useSelector(state=>state.data.results);
+    const notLength = useSelector(state=>state.notifications.length)
     const dispatch= useDispatch();
 
     const [trigger, {isLoading}]=api.endpoints.searchPost.useLazyQuery();
@@ -20,7 +22,12 @@ function SearchBar() {
             await trigger(text);
             setText("");
         } catch(err){
-            console.log(err)
+            dispatch(notify({
+                id: notLength,
+                type:"fail",
+                text:"Error posting",
+                active:true
+            }))
         }
     }
 

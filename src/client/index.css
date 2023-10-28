@@ -694,6 +694,11 @@ footer {
   min-height: 100px;
   background-color: #efefef;
   color: #000000;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 footer a {
   color: #000000;
