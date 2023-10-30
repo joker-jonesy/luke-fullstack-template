@@ -46,16 +46,16 @@ function Post(props) {
         })
     }
 
-    const toggleTag = (tag) => {
-        const newTags = tags;
-        if (tags.find((i) => i.name === tag.name)) {
-            const index = tags.indexOf(tag);
-            newTags.splice(index, 1);
-            setTags(newTags)
-        } else {
-            newTags.push(tag);
-            setTags(newTags)
+    const toggleTag = (tag)=>{
+        const result=tags;
+        if(result.includes(tag)){
+            const index = result.indexOf(tag);
+            result.splice(index,1);
+        }else{
+            result.push(tag);
         }
+
+        setTags(result);
         setChange(!change)
     }
 
@@ -144,8 +144,7 @@ function Post(props) {
                         </div>
                         <div className={"tags"}>
                             {isLoading ? <FontAwesomeIcon icon={faSpinner} spin/> : data.map((i) =>
-                                <div key={i.id} className={"tag"} onClick={() => toggleTag({name: i.name, id: i.id})}
-                                     style={{border: tags.find(x => i.name === x.name) ? "3px solid blue" : "none"}}>{i.name}</div>
+                                <div key={i.id} className={"tag"} onClick={()=>toggleTag(i)} style={{border: tags.includes(i)? "3px solid blue" : "none"}}>{i.name}</div>
                             )}
                         </div>
 

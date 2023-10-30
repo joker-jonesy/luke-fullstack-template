@@ -11,35 +11,30 @@ function CreatePostForm(){
     const [addPost, {isLoading: sendPost}]= useAddPostMutation();
     const {data, isLoading}= useGetTagsQuery();
     const notLength = useSelector(state=>state.notifications.length)
-
     const [text, setText]=useState("");
     const [error, setError]=useState("");
     const [tags,setTags]= useState([]);
-    const [change, setChange]= useState(false)
+    const [change, setChange]=useState(false)
     const dispatch = useDispatch()
 
     const toggleTag = (tag)=>{
-        const newTags =tags;
-        if(tags.find((i)=>i.name===tag.name)){
-            const index = tags.indexOf(tag);
-            newTags.splice(index,1);
-            setTags(newTags)
-        }else{
-            newTags.push(tag);
-            setTags(newTags)
-        }
-        setChange(!change)
-    }
+       const result=tags;
+       if(result.includes(tag)){
+           const index = result.indexOf(tag);
+           result.splice(index,1);
+       }else{
+           result.push(tag);
+       }
 
-    useEffect(()=>{
-        // console.log("changed")
-    }, [change])
+       setTags(result);
+       setChange(!change)
+    }
 
     const onSubmit = async()=>{
         if(text.length>=3){
             await addPost({
                 text:text,
-                tags: tags
+                tags:tags
             }).then(()=>{
                 setText("");
                 setTags([]);
@@ -63,6 +58,10 @@ function CreatePostForm(){
 
     }
 
+    useEffect(()=>{
+
+    },[change])
+
     return(
         <div className={"createForm"}>
             {sendPost&&<FontAwesomeIcon className={"load"} icon={faSpinner} spin/>}
@@ -71,7 +70,7 @@ function CreatePostForm(){
             <h3>Add Tags</h3>
             <div className={"tags"}>
                 {isLoading? <FontAwesomeIcon icon={faSpinner} spin/>: data.map((i)=>
-                    <div key={i.id} className={"tag"} onClick={()=>toggleTag({name:i.name, id:i.id})} style={{border: tags.find(x=>i.name===x.name)?"3px solid blue":"none"}}>{i.name}</div>
+                    <div key={i.id} className={"tag"} onClick={()=>toggleTag(i)} style={{border: tags.includes(i)? "3px solid blue" : "none"}}>{i.name}</div>
                 ) }
             </div>
             <Button click={onSubmit} vl={"SUBMIT"} theme={"submit"}/>
