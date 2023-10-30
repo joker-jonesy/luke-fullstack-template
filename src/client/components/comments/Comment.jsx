@@ -30,8 +30,8 @@ function Comment(props) {
         })
     }
 
-    const upVotes = props.data.vote.filter(i => i.type === "up");
-    const downVotes = props.data.vote.filter(i => i.type === "down");
+    const upVotes = props.data.vote.filter(i => i.type === "up")||[];
+    const downVotes = props.data.vote.filter(i => i.type === "down")||[];
 
     const ifUp=props.data.author.id===me.userId&& props.data.vote.find(i=>i.userId===me.userId&&i.type==="up");
     const ifDown=props.data.author.id===me.userId&& props.data.vote.find(i=>i.userId===me.userId&&i.type==="down");
