@@ -47,12 +47,14 @@ function Comment(props) {
         })
     }
 
+    const userEdit = props.data.authorId===me.userId||props.post.authorId===me.userId
+
     return (
         <div key={props.data.id} className="comment">
             {deleting||voting&&<FontAwesomeIcon className={"load"} icon={faSpinner} spin/>}
             <h3>{props.data.author.username}</h3>
             <p>{props.data.text}</p>
-            {props.edit && <FontAwesomeIcon className={"delete"} icon={faTrash} onClick={onDelete}/>}
+            {userEdit && <FontAwesomeIcon className={"delete"} icon={faTrash} onClick={onDelete}/>}
             <div className="votes">
                 {me.userId ?
                     <>

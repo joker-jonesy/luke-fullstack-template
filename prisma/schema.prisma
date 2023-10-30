@@ -17,6 +17,7 @@ model user {
   like     like[]
   comment  comment[]
   vote     vote[]
+  image    String    @default("null")
 }
 
 model post {

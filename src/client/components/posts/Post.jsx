@@ -116,7 +116,7 @@ function Post(props) {
                                 <p>{props.data.text}</p>
                                 <Likes data={props.data.like} postId={props.data.id}/>
                             </div>
-                            {props.data.comment!==0&&<Comments data={props.data.comment} postId={props.data.id} edit={me.userId===props.data.authorId||props.delete}/> }
+                            {props.data.comment!==0&&<Comments post={props.data} data={props.data.comment} postId={props.data.id} edit={me.userId===props.data.authorId||props.delete}/> }
                             {props.data.post_tag.length!==0&&<Tags data={props.data.post_tag}/>}
                         </div>
                         {me.userId&&

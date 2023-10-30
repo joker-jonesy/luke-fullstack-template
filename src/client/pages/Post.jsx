@@ -34,7 +34,7 @@ function Post() {
                         <p>{post.text}</p>
                         <Likes data={post.like} postId={post.id}/>
                     </div>
-                    {post.comment!==0&&<Comments data={post.comment} postId={post.id} edit={me.userId===post.authorId||props.delete}/> }
+                    {post.comment!==0&&<Comments data={post.comment} post={post} postId={post.id} edit={me.userId===post.authorId}/> }
                     {post.post_tag.length!==0&&<Tags data={post.post_tag}/>}
                 </div>
                 {me.userId&&

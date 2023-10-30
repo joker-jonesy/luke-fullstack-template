@@ -20,7 +20,7 @@ router.post("/register", async (req, res,next)=>{
 
         const token = jwt.sign({id:user.id}, process.env.JWT)
 
-        res.status(201).send({token, user:{userId:user.id, username: user.username, admin:false}})
+        res.status(201).send({token, user:{userId:user.id, username: user.username, admin:false, image: null}})
 
     }catch(err){
         next(err)
@@ -46,10 +46,24 @@ router.post("/login", async (req, res,next)=>{
 
         const token = jwt.sign({id:user.id}, process.env.JWT)
 
-        res.send({token, user:{userId:user.id, username: user.username, admin: user.admin}})
+        res.send({token, user:{userId:user.id, username: user.username, admin: user.admin, image: user.image!=="null"?user.image:null}})
 
     }catch(err){
         next(err);
+    }
+});
+
+router.put("/edit", require('./middleware'), async (req, res,next)=>{
+    try{
+        const user = await  prisma.user.update({
+            where: {id:req.user.id},
+            data: req.body
+        })
+
+        res.send({userId:user.id, username: user.username, admin: user.admin, image: user.image!=="null"?user.image:null})
+
+    } catch(err){
+        next(err)
     }
 });
 

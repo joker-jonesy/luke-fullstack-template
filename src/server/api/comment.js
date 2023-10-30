@@ -4,53 +4,57 @@ const {PrismaClient} = require("@prisma/client");
 const prisma = new PrismaClient();
 
 router.post('/', require('../auth/middleware'), async (req, res, next) => {
-    await prisma.comment.create({
-        data: {
-            authorId:  Number(req.user.id),
-            postId:Number(req.body.postId),
-            text:  req.body.text
-        }
-    });
+    try{
+        await prisma.comment.create({
+            data: {
+                authorId:  Number(req.user.id),
+                postId:Number(req.body.postId),
+                text:  req.body.text
+            }
+        });
 
-    const post = await prisma.post.findUnique({
-        where: {
-            id: Number(req.body.postId),
-            authorId:  Number(req.user.id)
-        },
-        include: {
-            post_tag: {
-                include: {
-                    tag: true
-                }
+        const post = await prisma.post.findUnique({
+            where: {
+                id: Number(req.body.postId),
             },
-            author: true,
-            like: true,
-            comment: {
-                include:{
-                    author:true,
-                    vote:true
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
+                    }
+                },
+                author: true,
+                like: true,
+                comment: {
+                    include:{
+                        author:true,
+                        vote:true
+                    }
                 }
             }
-        }
-    });
-    const allPosts = await prisma.post.findMany({
-        include: {
-            post_tag: {
-                include: {
-                    tag: true
-                }
-            },
-            author: true,
-            like: true,
-            comment: {
-                include:{
-                    author:true,
-                    vote:true
+        });
+        const allPosts = await prisma.post.findMany({
+            include: {
+                post_tag: {
+                    include: {
+                        tag: true
+                    }
+                },
+                author: true,
+                like: true,
+                comment: {
+                    include:{
+                        author:true,
+                        vote:true
+                    }
                 }
             }
-        }
-    });
-    res.send({post, allPosts})
+        });
+        res.send({post, allPosts})
+    }catch(err){
+        next(err)
+    }
+
 });
 
 router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {

@@ -28,6 +28,22 @@ body {
 
 }
 
+.avatar{
+  height: 60px;;
+  width: 60px;
+  border-radius: 60px;
+  background-color: @tint;
+  color:@f3;
+  .flexInit();
+  .flexCenterRow();
+  margin: 8px 0;
+  overflow: hidden;
+
+  img{
+    height: 100%;
+  }
+}
+
 .searchLoad{
   margin-top: 10px;
 }
@@ -41,7 +57,7 @@ button{
   .pad(8px 25px);
   border-radius: 30px;
   border: none;
-  margin: 0;
+  margin: 8px 0;
   cursor: pointer;
   line-height: 0;
   outline: none;
@@ -68,7 +84,7 @@ button{
   }
 }
 
-input{
+input[type=text]{
   margin-top: 10px;
   outline: none;
   border: solid black 2px;
@@ -85,6 +101,7 @@ input{
     border: blue 5px solid;
   }
 }
+
 
 section{
   .flexInit();

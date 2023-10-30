@@ -4,6 +4,9 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CreatePostForm from "../components/posts/CreatePostForm";
 import Post from "../components/posts/Post";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUser} from "@fortawesome/free-solid-svg-icons";
+import Avatar from "../components/inputs/Avatar";
 
 function User (){
     const me = useSelector(state=>state.auth.credentials.user);
@@ -25,6 +28,7 @@ function User (){
     return (
         <>
             <section>
+                <Avatar mod={true}/>
                 <h1>Welcome {me.username}!</h1>
             <CreatePostForm me={me}/>
             {load? <h1>Loading...</h1>: posts.filter(i=>  i.authorId === me.userId).length===0? <h1>User has not created any posts</h1>:posts.filter(i=>  i.authorId === me.userId).map((i)=>

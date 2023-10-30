@@ -17,6 +17,13 @@ const authApi = api.injectEndpoints({
                 body: cred
             })
         }),
+        edit: builder.mutation({
+            query: (cred)=>({
+                url:"/auth/edit",
+                method: "PUT",
+                body: cred
+            })
+        }),
         logout: builder.mutation({
             queryFn: ()=>({data:{}})
         })
@@ -28,5 +35,6 @@ const authApi = api.injectEndpoints({
 export const {
     useLoginMutation,
     useRegisterMutation,
-    useLogoutMutation
+    useLogoutMutation,
+    useEditMutation
 } = authApi

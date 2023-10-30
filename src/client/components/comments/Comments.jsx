@@ -1,7 +1,7 @@
 import Comment from "./Comment";
 
 
-function Comments({data, edit}) {
+function Comments({data, post}) {
 
 
 
@@ -24,7 +24,7 @@ function Comments({data, edit}) {
             <h2>Comments</h2>
             <div className="comments">
                 {popularComments.map((i) =>
-                    <Comment key={i.id} edit={edit} commentId={i.id} data={i}/>
+                    <Comment key={i.id} post={post} commentId={i.id} data={i}/>
                 )}
                 {popularComments.length===0&& <h2>No Comments on This Post</h2>}
             </div>

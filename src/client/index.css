@@ -148,6 +148,23 @@ body {
     padding-top: 60px;
   }
 }
+.avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 60px;
+  background-color: #696969;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 8px 0;
+  overflow: hidden;
+}
+.avatar img {
+  height: 100%;
+}
 .searchLoad {
   margin-top: 10px;
 }
@@ -162,7 +179,7 @@ button {
   padding: 8px 25px;
   border-radius: 30px;
   border: none;
-  margin: 0;
+  margin: 8px 0;
   cursor: pointer;
   line-height: 0;
   outline: none;
@@ -189,7 +206,7 @@ button:hover {
 button:hover a {
   color: white;
 }
-input {
+input[type=text] {
   margin-top: 10px;
   outline: none;
   border: solid black 2px;
@@ -205,7 +222,7 @@ input {
   width: 100%;
   border-radius: 35px;
 }
-input:focus {
+input[type=text]:focus {
   border: blue 5px solid;
 }
 section {
