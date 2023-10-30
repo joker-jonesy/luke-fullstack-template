@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {useDeletePostMutation, useAddPostMutation, useGetPostsQuery} from "../redux/api/posts";
+import { useGetPostsQuery} from "../redux/api/posts";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import CreatePostForm from "../components/posts/CreatePostForm";
@@ -7,8 +7,6 @@ import Post from "../components/posts/Post";
 
 function User (){
     const me = useSelector(state=>state.auth.credentials.user);
-    const [deletePost] = useDeletePostMutation();
-    const [addPost]= useAddPostMutation();
     const postsData = useGetPostsQuery();
     const posts = useSelector(state=>state.data.posts)
 
@@ -23,28 +21,6 @@ function User (){
     useEffect(()=>{
         !me.userId && navigate("/")
     }, [me])
-
-    const onDelete = async (id)=>{
-        await deletePost(id).then(()=>{
-            console.log("delete");
-            // location.reload()
-        }).catch(()=>{
-            console.log("error")
-        })
-    }
-
-    const onSubmit = async()=>{
-        await addPost({
-            text:"the coolest post ever",
-            authorId: me.userId
-        }).then(()=>{
-            console.log("added");
-        }).catch(()=>{
-            console.log("error")
-        })
-    }
-
-
 
     return (
         <>

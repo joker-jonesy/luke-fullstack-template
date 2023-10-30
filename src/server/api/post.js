@@ -63,7 +63,8 @@ router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
     try {
         const post = await prisma.post.delete({
             where: {
-                id: Number(req.params.id)
+                id: Number(req.params.id),
+                authorId: Number(req.user.id)
             }
         });
 
@@ -75,14 +76,14 @@ router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
 })
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', require('../auth/middleware'), async (req, res, next) => {
 
     try {
 
         const post = await prisma.post.create({
             data: {
                 text: req.body.text,
-                authorId: req.body.authorId
+                authorId: req.user.id
             }
         })
 
@@ -122,16 +123,16 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', require('../auth/middleware'), async (req, res, next) => {
 
     try {
         const post = await prisma.post.update({
             where: {
-                id: Number(req.params.id)
+                id: Number(req.params.id),
+                authorId: Number(req.user.id)
             },
             data: {
-                text: req.body.text,
-                authorId: req.body.authorId
+                text: req.body.text
             }
         })
 

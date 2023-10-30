@@ -64,7 +64,6 @@ function Post(props) {
             {
                 id: props.data.id,
                 text: text,
-                authorId: props.data.authorId,
                 tags: tags
             }
         ).then(() => {

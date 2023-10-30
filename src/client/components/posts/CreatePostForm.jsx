@@ -7,8 +7,7 @@ import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useDispatch, useSelector} from "react-redux";
 import {notify} from "../../redux/slices/notificationSlice";
-function CreatePostForm(props){
-    const {me} = props;
+function CreatePostForm(){
     const [addPost, {isLoading: sendPost}]= useAddPostMutation();
     const {data, isLoading}= useGetTagsQuery();
     const notLength = useSelector(state=>state.notifications.length)
@@ -40,7 +39,6 @@ function CreatePostForm(props){
         if(text.length>=3){
             await addPost({
                 text:text,
-                authorId: me.userId,
                 tags: tags
             }).then(()=>{
                 setText("");

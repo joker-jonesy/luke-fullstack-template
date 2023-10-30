@@ -8,7 +8,7 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
     try{
         const exist = await prisma.vote.findFirst({
             where:{
-                userId:  Number(req.body.userId),
+                userId:  Number(req.user.id),
                 commentId:  Number(req.body.commentId),
             }
         })
@@ -18,14 +18,14 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
             await prisma.vote.delete({
                 where: {
                     id: exist.id,
-                    userId:  Number(req.body.userId),
+                    userId:  Number(req.user.id),
                     commentId:  Number(req.body.commentId),
                 }
             });
             if(exist.type!==req.body.type){
                 await prisma.vote.create({
                     data: {
-                        userId:  Number(req.body.userId),
+                        userId:  Number(req.user.id),
                         commentId:  Number(req.body.commentId),
                         type: req.body.type
                     }
@@ -34,7 +34,7 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
         }else{
             await prisma.vote.create({
                 data: {
-                    userId:  Number(req.body.userId),
+                    userId:  Number(req.user.id),
                     commentId:  Number(req.body.commentId),
                     type: req.body.type
                 }

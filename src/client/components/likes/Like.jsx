@@ -17,7 +17,6 @@ function Like(props) {
     const onSubmit = async () => {
         await likePost({
             postId: Number(props.postId),
-            userId: Number(me.userId),
             type: props.type
         }).then(() => {
             console.log("added");

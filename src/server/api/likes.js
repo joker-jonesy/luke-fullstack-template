@@ -8,7 +8,7 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
     try{
         const exist = await prisma.like.findFirst({
             where:{
-                userId:  Number(req.body.userId),
+                userId:  Number(req.user.id),
                 postId:  Number(req.body.postId),
             }
         })
@@ -18,14 +18,14 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
             await prisma.like.delete({
                 where: {
                     id: exist.id,
-                    userId:  Number(req.body.userId),
+                    userId:  Number(req.user.id),
                     postId:  Number(req.body.postId),
                 }
             });
             if(exist.type!==req.body.type){
                 await prisma.like.create({
                     data: {
-                        userId:  Number(req.body.userId),
+                        userId:  Number(req.user.id),
                         postId:  Number(req.body.postId),
                         type: req.body.type
                     }
@@ -34,7 +34,7 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
         }else{
             await prisma.like.create({
                 data: {
-                    userId:  Number(req.body.userId),
+                    userId:  Number(req.user.id),
                     postId:  Number(req.body.postId),
                     type: req.body.type
                 }

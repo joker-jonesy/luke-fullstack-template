@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 router.post('/', require('../auth/middleware'), async (req, res, next) => {
     await prisma.comment.create({
         data: {
-            authorId:  Number(req.body.authorId),
+            authorId:  Number(req.user.id),
             postId:Number(req.body.postId),
             text:  req.body.text
         }
@@ -14,7 +14,8 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
 
     const post = await prisma.post.findUnique({
         where: {
-            id: Number(req.body.postId)
+            id: Number(req.body.postId),
+            authorId:  Number(req.user.id)
         },
         include: {
             post_tag: {
@@ -57,7 +58,8 @@ router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
     try {
         const comment = await prisma.comment.delete({
             where: {
-                id: Number(req.params.id)
+                id: Number(req.params.id),
+                authorId:  Number(req.user.id),
             }
         });
         const post = await prisma.post.findUnique({

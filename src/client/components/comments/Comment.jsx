@@ -39,7 +39,6 @@ function Comment(props) {
     const onSubmit = async (type) => {
         await voteComment({
             commentId: Number(props.commentId),
-            userId: Number(me.userId),
             type: type
         }).then(() => {
             console.log("added");

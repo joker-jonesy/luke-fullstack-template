@@ -19,7 +19,6 @@ function CreateCommentForm(props){
         if(text.length>=3){
             await addComment({
                 text:text,
-                authorId: Number(me.userId),
                 postId: postId
             }).then(()=>{
 
