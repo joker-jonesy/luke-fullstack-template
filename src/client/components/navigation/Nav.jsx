@@ -5,6 +5,8 @@ import {useLogoutMutation} from "../../redux/api/auth";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {useSelector} from "react-redux";
 import logo from '../../../../public/vite.svg'
+import Avatar from "../inputs/Avatar";
+import SearchBar from "../inputs/SearchBar";
 
 function Nav(){
 
@@ -20,20 +22,19 @@ function Nav(){
                    <img src={logo} alt={"site logo"}/>
                </div>
 
+               <SearchBar/>
+
                <div className={"link-container"}>
                    <Link to="/">Posts</Link>
                    {!user.userId && <Link to={"/register"}>Login/Register</Link>}
-                   {user.userId && <Link to={"/user"}>Profile</Link>}
-                   {user.userId && <a onClick={logout}>Logout</a>}
-                   {/*<div className={"profile"}>{user.userId && <h1>{user.username}</h1>}</div>*/}
+                   {user.userId && <Link to={"/user"}><Avatar mod={false}/></Link>}
                </div>
-               <FontAwesomeIcon className={"menu"} onClick={()=>setToggle(!toggle)} icon={faBars} size={"2x"} />
+               <div className={"menu"} onClick={()=>setToggle(!toggle)}>{user.userId ? <Avatar mod={false}/> :<FontAwesomeIcon className={"menu"}  icon={faBars} size={"2x"} />}</div>
            </nav>
            <div className="mobile_menu" style={{left: toggle?"0":"-100%"}}>
                <Link to="/">Posts</Link>
                {!user.userId && <Link to={"/register"}>Login/Register</Link>}
                {user.userId && <Link to={"/user"}>Profile</Link>}
-               {user.userId && <button onClick={logout}>Logout</button>}
            </div>
 
        </>

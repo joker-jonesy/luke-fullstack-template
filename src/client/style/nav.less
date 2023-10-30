@@ -17,6 +17,12 @@ nav{
 
 }
 
+.menu{
+  cursor: pointer;
+}
+
+
+
 .logo{
   height: 100%;
   width: 60px;
@@ -38,12 +44,13 @@ nav{
   position: fixed;
   height: 100%;
   top: @navHeightMobile;
-  background-color: rgba(0, 128, 0, 0.6);
+  background-color: rgba(0, 128, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   transition: 0.5s;
+  z-index: 103;
 }
 
 .link-container a{
@@ -72,6 +79,8 @@ nav{
 
   .link-container{
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .mobile_menu{

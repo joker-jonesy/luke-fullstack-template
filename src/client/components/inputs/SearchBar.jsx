@@ -5,8 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {api} from "../../redux/api/api";
 import {clearSearch} from "../../redux/slices/dataSlice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faSearch, faSpinner, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {notify} from "../../redux/slices/notificationSlice";
+import {useNavigate} from "react-router-dom";
 
 function SearchBar() {
 
@@ -14,6 +15,7 @@ function SearchBar() {
     const results = useSelector(state=>state.data.results);
     const notLength = useSelector(state=>state.notifications.length)
     const dispatch= useDispatch();
+    const navigate = useNavigate();
 
     const [trigger, {isLoading}]=api.endpoints.searchPost.useLazyQuery();
 
@@ -21,6 +23,7 @@ function SearchBar() {
         try {
             await trigger(text);
             setText("");
+            navigate("/")
         } catch(err){
             dispatch(notify({
                 id: notLength,
@@ -31,15 +34,23 @@ function SearchBar() {
         }
     }
 
+    const onClear = ()=>{
+        dispatch(clearSearch());
+        navigate("/")
+    }
+
 
     return (
         <>
+            <div className={"searchWrap"}>
             {isLoading&&<FontAwesomeIcon className={"searchLoad"} icon={faSpinner} size={"2x"} spin/>}
             <div className="searchBar">
                 <TextInput placeholder={"Search.."} type={"text"} vl={text} chg={setText}/>
-                <Button click={onSubmit} theme={"submit"}>SEARCH</Button>
+                <Button click={onSubmit} theme={"submit"}><span>SEARCH</span><FontAwesomeIcon icon={faSearch}/></Button>
+                {results.search&& <FontAwesomeIcon className={"clear"} icon={faXmark} onClick={onClear} size={"2x"}/>}
             </div>
-            {results.search&&<Button click={()=>dispatch(clearSearch())} theme={"submit"}>CLEAR SEARCH</Button>}
+
+            </div>
         </>
     )
 }

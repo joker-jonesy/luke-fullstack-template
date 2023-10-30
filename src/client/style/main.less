@@ -28,10 +28,12 @@ body {
 
 }
 
+
+
 .avatar{
-  height: 60px;;
-  width: 60px;
-  border-radius: 60px;
+  height: 50px;;
+  width: 50px;
+  border-radius: 50px;
   background-color: @tint;
   color:@f3;
   .flexInit();
@@ -187,9 +189,39 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  .clear{
+    cursor: pointer;
+    color: @warn;
+    position: absolute;
+    right: 30%;
+    @media screen and (min-width: 750px){
+      right: 20%;
+    }
+    @media screen and (min-width: @desktop){
+      right: 18%;
+    }
+  }
+  .pad(10px);
 
   button{
     margin: 0 0 0 10px;
+    width: 15%;
+    span{
+      display: none;
+      @media screen and (min-width: @desktop){
+        display: block;
+      }
+    }
+    svg{
+      @media screen and (min-width: @desktop){
+        display: none;
+      }
+    }
+  }
+
+  input{
+    margin: 0;
   }
 
   @media screen and (min-width: @tablet) {
@@ -200,6 +232,11 @@ section{
   @media screen and (min-width: @desktop) {
     width: @tablet;
   }
+}
+
+.searchWrap{
+  .flexInit();
+  .flexCenterRow();
 }
 
 @keyframes pulse {

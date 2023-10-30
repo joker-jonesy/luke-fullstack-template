@@ -38,7 +38,6 @@ function Posts() {
     return (
 
         <section>
-            <SearchBar/>
             {load ? <h1>Loading...</h1>
                 : results.search ?
                     <>{searchEle}</> :
