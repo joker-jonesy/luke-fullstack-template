@@ -7,9 +7,13 @@ const postApi = api.injectEndpoints({
         getPost: builder.query({
             query: (id)=> '/api/posts/'+id
         }),
+        getPagePost: builder.query({
+            query: (num)=> '/api/posts/page/'+num
+        }),
         searchPost: builder.query({
             query: (search)=>'/api/search/'+search
         }),
+
         deletePost:builder.mutation({
             query:(id)=>({
                 url:'/api/posts/'+id,
@@ -44,9 +48,8 @@ const postApi = api.injectEndpoints({
 })
 
 export const {
-    useSearchPostQuery,
+    useGetPagePostQuery,
     useLikePostMutation,
-    useGetUserPostsQuery,
     useAddPostMutation,
     useGetPostQuery,
     useDeletePostMutation,

@@ -128,6 +128,14 @@ nav a {
     display: none;
   }
 }
+.pageNav {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 * {
   margin: 0;
   box-sizing: border-box;
@@ -304,6 +312,10 @@ section {
 }
 .fillOverlay .post {
   background: none;
+}
+.inactive {
+  opacity: 0.5;
+  pointer-events: none;
 }
 ::placeholder {
   color: #cccccc;

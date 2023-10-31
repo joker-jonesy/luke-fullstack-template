@@ -15,14 +15,53 @@ router.get('/', async (req, res, next) => {
                 author: true,
                 like: true,
                 comment: {
-                    include:{
-                        author:true,
-                        vote:true
+                    include: {
+                        author: true,
+                        vote: true
                     }
                 }
             }
         });
         res.send(allPosts)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.get('/page/:num', async (req, res, next) => {
+    try {
+
+        const page = Number(req.params.num);
+        const skip = (4 * page);
+
+        let result = await prisma.post.findMany({
+                skip: skip,
+                take: 4,
+                include: {
+                    post_tag: {
+                        include: {
+                            tag: true
+                        }
+                    },
+                    author: true,
+                    like: true,
+                    comment: {
+                        include: {
+                            author: true,
+                            vote: true
+                        }
+                    }
+                },
+                orderBy: {
+                    createdAt: "desc",
+                }
+            }
+        );
+
+
+        res.send(result);
+
+
     } catch (err) {
         next(err)
     }
@@ -43,9 +82,9 @@ router.get('/:id', async (req, res, next) => {
                 author: true,
                 like: true,
                 comment: {
-                    include:{
-                        author:true,
-                        vote:true
+                    include: {
+                        author: true,
+                        vote: true
                     }
                 }
             }
@@ -55,7 +94,6 @@ router.get('/:id', async (req, res, next) => {
         next(err)
     }
 })
-
 
 
 router.delete('/:id', require('../auth/middleware'), async (req, res, next) => {
@@ -111,8 +149,8 @@ router.post('/', require('../auth/middleware'), async (req, res, next) => {
                 author: true,
                 like: true,
                 comment: {
-                    include:{
-                        author:true
+                    include: {
+                        author: true
                     }
                 }
             }
@@ -164,8 +202,8 @@ router.put('/:id', require('../auth/middleware'), async (req, res, next) => {
                 author: true,
                 like: true,
                 comment: {
-                    include:{
-                        author:true
+                    include: {
+                        author: true
                     }
                 }
             }
