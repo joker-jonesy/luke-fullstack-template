@@ -26,6 +26,7 @@ function Post(props) {
     const [change, setChange] = useState(false)
     const dispatch = useDispatch()
     const notLength = useSelector(state=>state.length)
+
     const onDelete = async (e) => {
         e.preventDefault();
         await deletePost(props.data.id).then(() => {
@@ -79,7 +80,8 @@ function Post(props) {
             return i.tag
         }))
 
-    }, [edit])
+    }, [])
+    console.log(tags)
 
     useEffect(() => {
     }, [change])
@@ -144,7 +146,7 @@ function Post(props) {
                         </div>
                         <div className={"tags"}>
                             {isLoading ? <FontAwesomeIcon icon={faSpinner} spin/> : data.map((i) =>
-                                <div key={i.id} className={"tag"} onClick={()=>toggleTag(i)} style={{border: tags.includes(i)? "3px solid blue" : "none"}}>{i.name}</div>
+                                <div key={i.id} className={"tag"} onClick={()=>toggleTag(i)} style={{border: tags.find(x=>x.id===i.id)? "3px solid blue" : "none"}}>{i.name}</div>
                             )}
                         </div>
 

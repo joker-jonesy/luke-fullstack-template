@@ -90,6 +90,7 @@ const dataSlice = createSlice({
         builder.addMatcher(api.endpoints.editPost.matchFulfilled, (state, {payload}) => {
             return {
                 ...state,
+                post:payload,
                 posts: state.posts.map(i => i.id === payload.id ? {...i, ...payload} : i)
             }
         })
