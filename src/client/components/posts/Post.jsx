@@ -81,7 +81,6 @@ function Post(props) {
         }))
 
     }, [])
-    console.log(tags)
 
     useEffect(() => {
     }, [change])

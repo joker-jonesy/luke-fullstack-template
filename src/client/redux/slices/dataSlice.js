@@ -6,6 +6,7 @@ const dataSlice = createSlice({
     name: "data",
     initialState: {
         posts: [],
+        last:false,
         tags: [],
         post: null,
         results: {
@@ -47,11 +48,14 @@ const dataSlice = createSlice({
         })
 
         builder.addMatcher(api.endpoints.getPagePost.matchFulfilled, (state, {payload}) => {
-            const newposts = state.posts.concat(payload)
+
+            const newList = [...payload];
+            newList.pop()
 
             return {
                 ...state,
-                posts: newposts
+                last: payload.length<=4,
+                posts: newList
             }
         })
 

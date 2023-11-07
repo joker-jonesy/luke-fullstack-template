@@ -36,7 +36,7 @@ router.get('/page/:num', async (req, res, next) => {
 
         let result = await prisma.post.findMany({
                 skip: skip,
-                take: 4,
+                take: 5,
                 include: {
                     post_tag: {
                         include: {

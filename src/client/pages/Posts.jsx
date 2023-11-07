@@ -8,39 +8,34 @@ import {api} from "../redux/api/api";
 function Posts() {
 
     // const postsData = useGetPostsQuery();
-    const [page, setPage] = useState(1);
-    const [last, setLast] = useState(null)
-    const {data, isLoading} = useGetPagePostQuery(page);
-    // const {data, isLoading} = useGetPostsQuery(page);
+    const [currentPage, setCurrentPage] = useState(1);
+    const indexOfLastItem = currentPage * 4;
+    const indexOfFirstItem = indexOfLastItem - 4;
+    const {isLoading} = useGetPostsQuery();
+    const last = useSelector(state => state.data.last);
     const posts = useSelector(state => state.data.posts);
     const results = useSelector(state => state.data.results);
     const me = useSelector(state => state.auth.credentials.user);
-    const [trigger, {isLoading:load, data: result}]=api.endpoints.getPagePost.useLazyQuery();
+    const currentItems = [...posts].slice(indexOfFirstItem, indexOfLastItem);
+    const currentSearch = results.rslt.slice(indexOfFirstItem, indexOfLastItem);
+
+
 
     const postEle = (
-        posts.length === 0 || !posts
+        currentItems.length === 0 || !posts
             ? <h1>No Posts Shown</h1>
-            : posts.map((i, idx) =>
+            : currentItems.map((i, idx) =>
                 <Post key={idx} data={i} delete={me.admin}/>
             ))
 
     const searchEle = (
-        results.rslt.length === 0 || !results.rslt
+        currentSearch.length === 0 || !results.rslt
             ? <>
                 <h1>No Results Found</h1>
             </>
-            : results.rslt.map((i, idx) =>
+            : currentSearch.rslt.map((i, idx) =>
                 <Post key={idx} data={i} delete={me.admin}/>
             ))
-
-    const paginate = async (nm)=>{
-        setPage(nm);
-        trigger(page)
-        console.log(result)
-        // if (result.length<4) {
-        //     setLast(page)
-        // }
-    }
 
 
     return (
@@ -51,14 +46,14 @@ function Posts() {
                         <>{searchEle}</> :
                         <>{postEle}</>
                 }
-                {/*{!load &&*/}
-                {/*    <div className={"pageNav"}>*/}
-                {/*        {page !== 1 ? <Button click={() => paginate(page-1)}>Previous</Button> :*/}
-                {/*            <Button theme={"inactive"}>Previous</Button>}*/}
-                {/*        {page !== last ? <Button click={() => paginate(page + 1)}>Next</Button> :*/}
-                {/*            <Button theme={"inactive"}>Next</Button>}*/}
-                {/*    </div>*/}
-                {/*}*/}
+                {!isLoading &&
+                    <div className={"pageNav"}>
+                        {currentPage !== 1 ? <Button click={() => setCurrentPage(currentPage-1)}>Previous</Button> :
+                            <Button theme={"inactive"}>Previous</Button>}
+                        {indexOfLastItem<posts.length ? <Button click={() => setCurrentPage(currentPage + 1)}>Next</Button> :
+                            <Button theme={"inactive"}>Next</Button>}
+                    </div>
+                }
 
 
             </section>
